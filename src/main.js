@@ -5,8 +5,29 @@ import store from "./store";
 import "tailwindcss/tailwind.css";
 import "./assets/css/index.css";
 import vuetify from "./plugins/vuetify";
+import axios from "axios";
+import firebase from "firebase/app";
 
+Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
+
+// Configuración de Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyB_njEx_NgiJQQlOVVKF1s9dmTLYvxxUMA",
+  authDomain: "your-second-choso.firebaseapp.com",
+  projectId: "your-second-choso",
+  storageBucket: "your-second-choso.appspot.com",
+  messagingSenderId: "547688449506",
+  appId: "1:547688449506:web:e84034a313417ef9a1e5bb",
+  measurementId: "G-PERXKXV2W6",
+};
+
+// Inicilizar Firebase
+firebase.initializeApp(firebaseConfig);
+
+firebase.auth().onAuthStateChanged((user) => {
+  store.dispatch("fetchUser", user);
+});
 
 new Vue({
   router,
