@@ -1,21 +1,46 @@
 <template>
-  <div id="app">
-    <TopHeader/>
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/About">About</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/register">Register</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <NavBar/>
+    <v-main>
+      <router-view/>
+      <v-overlay
+      :z-index="zIndex"
+      :value="overlay"
+      >
+        <v-btn
+          class="white--text"
+          color="teal"
+          @click="updateOverlay"
+        >
+          Hide Overlay
+        </v-btn>
+      </v-overlay>
+    </v-main>
+    <Footer/>
+  </v-app>
 </template>
 
 <script>
-import TopHeader from "./components/Top-Header.vue";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import { mapState, mapActions } from "vuex";
+
 export default {
+  name: "App",
+
   components: {
-    TopHeader,
+    NavBar,
+    Footer,
+  },
+
+  data: () => ({
+    zIndex: 0,
+  }),
+  methods: {
+    ...mapActions(["updateOverlay"]),
+  },
+  computed: {
+    ...mapState(["overlay"]),
   },
 };
 </script>
@@ -27,18 +52,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>

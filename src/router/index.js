@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
+import Example from "../views/Example.vue";
 import firebase from "firebase/app";
 import "firebase/auth";
 
@@ -25,10 +26,15 @@ const routes = [
     component: Register,
   },
   {
+    path: "/example",
+    name: "example",
+    component: Example,
+    meta: { requiresAuth: true },
+  },
+  {
     path: "/about",
     name: "About",
     // Esto hace que no se puede acceder a esta página si no se está logeado
-    meta: { requiresAuth: true },
     /*
      * Route level code-splitting
      * this generates a separate chunk (about.[hash].js) for this route

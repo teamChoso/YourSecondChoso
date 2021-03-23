@@ -1,8 +1,10 @@
-/* eslint-disable init-declarations */
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import "tailwindcss/tailwind.css";
+import "./assets/css/index.css";
+import vuetify from "./plugins/vuetify";
 import axios from "axios";
 import firebase from "firebase/app";
 
@@ -23,6 +25,7 @@ const firebaseConfig = {
 // Inicilizar Firebase
 firebase.initializeApp(firebaseConfig);
 
+// eslint-disable-next-line init-declarations
 let app;
 
 firebase.auth().onAuthStateChanged((user) => {
@@ -30,6 +33,7 @@ firebase.auth().onAuthStateChanged((user) => {
     app = new Vue({
       router,
       store,
+      vuetify,
       render: (h) => h(App),
     }).$mount("#app");
   }

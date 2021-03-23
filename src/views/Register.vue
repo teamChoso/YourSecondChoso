@@ -1,16 +1,36 @@
 <template>
     <div>
+      <h1>Register</h1>
         <div v-if="error" class="error">{{error.message}}</div>
-        <form @submit.prevent="pressed">
+        <v-form class="loginForm" @submit.prevent="pressed"
+          ref="form"
+        >
+          <v-text-field
+            class="login-input"
+            type="email"
+            v-model="email"
+            label="E-mail"
+            required
+          ></v-text-field>
+
+          <v-text-field
+            class="login-input"
+            v-model="password"
+            type="password"
+            name="input-10-1"
+            label="Password"
+            hint="At least 8 characters"
+            counter
+          ></v-text-field>
+
+          <v-btn
+            color="#e4b61a"
+            class="mr-4 login-btn"
+            type="submit"
+          >
             Register
-            <div class="email">
-                <input type="email" v-model="email" placeholder="email">
-            </div>
-            <div class="password">
-                <input type="password" v-model="password" placeholder="password">
-            </div>
-            <button type="submit">Register</button>
-        </form>
+          </v-btn>
+    </v-form>
     </div>
 </template>
 
@@ -25,7 +45,7 @@ export default {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
           console.log("here");
-          this.$router.replace({ name: "secret" });
+          this.$router.replace({ name: "example" });
         })
         .catch((error) => (this.error = error));
     },
@@ -48,18 +68,27 @@ export default {
     padding: 30px;
     margin: 20px;
     font-size: 21px;
+    margin: auto;
+    margin-top: 20px;
+    color: white;
+    border-radius: 10px
+}
+h1 {
+  margin-top: 50px;
+  font-size: 30px;
+}
+.loginForm {
+  width: 1000px;
+  margin: auto;
+  margin-top: 60px;
 }
 
-input {
-  width: 400px;
-  padding: 30px;
-  margin: 20px;
-  font-size: 21px;
+.login-btn {
+  color: white;
 }
 
-button {
-    width: 400px;
-    height: 75px;
-    font-size: 100%;
+.login-input{
+  width: 600px;
+  margin: auto;
 }
 </style>

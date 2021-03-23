@@ -1,15 +1,33 @@
 <template>
     <div>
-        Login
-        <form @submit.prevent="pressed">
-            <div class="login">
-                <input type="email" v-model="email" placeholder="login">
-            </div>
-            <div class="password">
-                <input type="password" v-model="password" placeholder="password">
-            </div>
-            <button type="submit">Login</button>
-        </form>
+        <h1>Login</h1>
+        <v-form class="loginForm" @submit.prevent="pressed"
+          ref="form"
+        >
+          <v-text-field
+            class="login-input"
+            type="email"
+            v-model="email"
+            label="E-mail"
+            required
+          ></v-text-field>
+
+          <v-text-field
+            class="login-input"
+            v-model="password"
+            type="password"
+            name="input-10-1"
+            label="Password"
+          ></v-text-field>
+
+          <v-btn
+            color="#e4b61a"
+            class="mr-4 login-btn"
+            type="submit"
+          >
+            Login
+          </v-btn>
+    </v-form>
         <div v-if="error" class="error">{{error.message}}</div>
     </div>
 </template>
@@ -32,7 +50,7 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then((data) => {
           console.log(data);
-          this.$router.replace({ name: "About" });
+          this.$router.replace({ name: "example" });
         })
         .catch((error) => {
           this.error = error;
@@ -44,21 +62,32 @@ export default {
 </script>
 
 <style scoped>
-div {
-  color: inherit;
-}
-input {
-  width: 400px;
-  padding: 30px;
-  margin: 20px;
-  font-size: 21px;
-}
-button {
-  width: 400px;
-  height: 75px;
-  font-size: 100%;
-}
 .error {
-  color: red;
+    width: 400px;
+    padding: 30px;
+    margin: 20px;
+    font-size: 21px;
+    margin: auto;
+    margin-top: 20px;
+    color: white;
+    border-radius: 10px
+}
+h1 {
+  margin-top: 50px;
+  font-size: 30px;
+}
+.loginForm {
+  width: 1000px;
+  margin: auto;
+  margin-top: 60px;
+}
+
+.login-btn {
+  color: white;
+}
+
+.login-input{
+  width: 600px;
+  margin: auto;
 }
 </style>
