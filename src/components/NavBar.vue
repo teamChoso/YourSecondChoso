@@ -5,15 +5,20 @@
       dark
       flat
     >
-
+      <!-- <v-img
+          :src="require('../assets/Nasa-Logo.png')"
+          class="my-3"
+          contain
+          height="70"
+      /> -->
       <v-toolbar-title class="text-mustard">Your Second Choso</v-toolbar-title>
 
       <v-spacer></v-spacer>
-
+      <!-- <h1>{{user}}</h1> -->
       <div class="flex justify-end space-x-9 mt-10">
         <div>
           <v-btn
-            class="white--text"
+            class="white--text btn-search"
             outlined
             rounded
             @click="updateOverlay"
@@ -25,20 +30,35 @@
 
         <div class="space-x-3">
           <v-btn
+            v-if="!user.loggedIn"
             rounded
             outlined
             dark
+            color="#e4b61a"
             to="/login"
           >
             Iniciar Sesión
           </v-btn>
           <v-btn
+            v-if="!user.loggedIn"
             rounded
             outlined
             dark
+            color="#e4b61a"
             to="/register"
           >
             Registrarse
+          </v-btn>
+
+          <v-btn
+            v-if="user.loggedIn"
+            @click="signOut"
+            rounded
+            outlined
+            dark
+            color="#e4b61a"
+          >
+            Sign Out
           </v-btn>
         </div>
       </div>
@@ -75,8 +95,9 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-
+import { mapState, mapActions, mapGetters } from "vuex";
+import firebase from "firebase/app";
+import "firebase/auth";
 export default {
   name: "NavBar",
   data () {
@@ -92,13 +113,26 @@ export default {
   },
   methods: {
     ...mapActions(["updateOverlay"]),
+    signOut () {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace({ name: "login" });
+        });
+    },
   },
   computed: {
     ...mapState(["overlay"]),
+    ...mapGetters({
+      user: "user",
+    }),
   },
 };
 </script>
 
 <style scoped>
-
+.btn-search {
+  width: 200px;
+}
 </style>

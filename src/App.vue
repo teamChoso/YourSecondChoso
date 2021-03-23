@@ -34,6 +34,7 @@ export default {
   },
 
   data: () => ({
+    _authorized: false,
     zIndex: 0,
   }),
   methods: {

@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Login</h1>
+        <hr>
         <v-form class="loginForm" @submit.prevent="pressed"
           ref="form"
         >
@@ -89,5 +90,9 @@ h1 {
 .login-input{
   width: 600px;
   margin: auto;
+}
+hr {
+  margin:auto;
+  width: 200px
 }
 </style>

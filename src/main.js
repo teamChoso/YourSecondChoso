@@ -25,16 +25,13 @@ const firebaseConfig = {
 // Inicilizar Firebase
 firebase.initializeApp(firebaseConfig);
 
-// eslint-disable-next-line init-declarations
-let app;
-
 firebase.auth().onAuthStateChanged((user) => {
-  if (!app) {
-    app = new Vue({
-      router,
-      store,
-      vuetify,
-      render: (h) => h(App),
-    }).$mount("#app");
-  }
+  store.dispatch("fetchUser", user);
 });
+
+new Vue({
+  router,
+  store,
+  vuetify,
+  render: (h) => h(App),
+}).$mount("#app");

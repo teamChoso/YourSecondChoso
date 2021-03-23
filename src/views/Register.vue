@@ -1,7 +1,7 @@
 <template>
     <div>
       <h1>Register</h1>
-        <div v-if="error" class="error">{{error.message}}</div>
+      <hr>
         <v-form class="loginForm" @submit.prevent="pressed"
           ref="form"
         >
@@ -31,6 +31,8 @@
             Register
           </v-btn>
     </v-form>
+    <div v-if="error" class="error">{{error.message}}</div>
+
     </div>
 </template>
 
@@ -43,7 +45,10 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
-        .then(() => {
+        .then((data) => {
+          data.user.updateProfile({
+            displayName: this.email,
+          });
           console.log("here");
           this.$router.replace({ name: "example" });
         })
@@ -90,5 +95,9 @@ h1 {
 .login-input{
   width: 600px;
   margin: auto;
+}
+hr {
+  margin:auto;
+  width: 200px
 }
 </style>
