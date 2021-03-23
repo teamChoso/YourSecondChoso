@@ -32,7 +32,6 @@
           <v-btn
             v-if="!user.loggedIn"
             rounded
-            outlined
             dark
             color="#e4b61a"
             to="/login"
@@ -42,7 +41,6 @@
           <v-btn
             v-if="!user.loggedIn"
             rounded
-            outlined
             dark
             color="#e4b61a"
             to="/register"
@@ -54,7 +52,6 @@
             v-if="user.loggedIn"
             @click="signOut"
             rounded
-            outlined
             dark
             color="#e4b61a"
           >

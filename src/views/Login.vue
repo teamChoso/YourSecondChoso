@@ -24,6 +24,8 @@
           <v-btn
             color="#e4b61a"
             class="mr-4 login-btn"
+            rounded
+            dark
             type="submit"
           >
             Login
