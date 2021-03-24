@@ -15,7 +15,7 @@
 
       <v-spacer></v-spacer>
       <!-- <h1>{{user}}</h1> -->
-      <div class="flex justify-end space-x-9 mt-10">
+      <div class="flex justify-end space-x-9 mt-10 ">
         <div>
           <v-btn
             class="white--text btn-search"
