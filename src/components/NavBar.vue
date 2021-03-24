@@ -15,10 +15,10 @@
 
       <v-spacer></v-spacer>
       <!-- <h1>{{user}}</h1> -->
-      <div class="flex justify-end space-x-9 mt-10 ">
+      <div class="flex justify-end space-x-9 mt-10">
         <div>
           <v-btn
-            class="white--text btn-search"
+            class="text-white w-12 text-sm md:w-48 "
             outlined
             rounded
             @click="updateOverlay"
@@ -30,6 +30,7 @@
 
         <div class="space-x-3">
           <v-btn
+            class="w-12 text-sm md:w-40"
             v-if="!user.loggedIn"
             rounded
             dark
@@ -39,6 +40,7 @@
             Iniciar Sesión
           </v-btn>
           <v-btn
+            class="w-12 text-sm md:w-40"
             v-if="!user.loggedIn"
             rounded
             dark
@@ -49,6 +51,7 @@
           </v-btn>
 
           <v-btn
+
             v-if="user.loggedIn"
             @click="signOut"
             rounded
@@ -129,7 +132,4 @@ export default {
 </script>
 
 <style scoped>
-.btn-search {
-  width: 200px;
-}
 </style>

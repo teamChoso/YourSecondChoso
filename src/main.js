@@ -7,6 +7,12 @@ import "./assets/css/index.css";
 import vuetify from "./plugins/vuetify";
 import axios from "axios";
 import firebase from "firebase/app";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+library.add(faAngleDoubleUp);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
