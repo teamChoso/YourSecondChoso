@@ -1,12 +1,12 @@
 <template>
     <div>
-        <h1>Login</h1>
+        <h1 class="mt-20 text-2xl">Login</h1>
         <hr>
-        <v-form class="loginForm" @submit.prevent="pressed"
+        <v-form class="mb-20" @submit.prevent="pressed"
           ref="form"
         >
           <v-text-field
-            class="login-input"
+            class="p-8 w-2/5 m-auto"
             type="email"
             v-model="email"
             label="E-mail"
@@ -14,7 +14,7 @@
           ></v-text-field>
 
           <v-text-field
-            class="login-input"
+            class="p-8 w-2/5 m-auto"
             v-model="password"
             type="password"
             name="input-10-1"
@@ -23,7 +23,7 @@
 
           <v-btn
             color="#e4b61a"
-            class="mr-4 login-btn"
+            class="mr-4"
             rounded
             dark
             type="submit"
@@ -75,24 +75,7 @@ export default {
     color: white;
     border-radius: 10px
 }
-h1 {
-  margin-top: 50px;
-  font-size: 30px;
-}
-.loginForm {
-  width: 1000px;
-  margin: auto;
-  margin-top: 60px;
-}
 
-.login-btn {
-  color: white;
-}
-
-.login-input{
-  width: 600px;
-  margin: auto;
-}
 hr {
   margin:auto;
   width: 200px

@@ -45,6 +45,13 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  scrollBehavior: function (to, from, savedPosition) {
+    if (to.hash) {
+      return { selector: to.hash };
+    } else {
+      return { x: 0, y: 0 };
+    }
+  },
   mode: "history",
   base: process.env.BASE_URL,
   routes,

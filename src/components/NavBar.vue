@@ -18,7 +18,7 @@
       <div class="flex justify-end space-x-9 mt-10">
         <div>
           <v-btn
-            class="white--text btn-search"
+            class="text-white w-12 text-sm md:w-48 "
             outlined
             rounded
             @click="updateOverlay"
@@ -30,6 +30,7 @@
 
         <div class="space-x-3">
           <v-btn
+            class="w-12 text-sm md:w-40"
             v-if="!user.loggedIn"
             rounded
             dark
@@ -39,6 +40,7 @@
             Iniciar Sesión
           </v-btn>
           <v-btn
+            class="w-12 text-sm md:w-40"
             v-if="!user.loggedIn"
             rounded
             dark
@@ -49,6 +51,7 @@
           </v-btn>
 
           <v-btn
+
             v-if="user.loggedIn"
             @click="signOut"
             rounded
@@ -68,6 +71,7 @@
           <v-tabs-slider color="#e4b61a"></v-tabs-slider>
 
           <v-tab
+            v-smooth-scroll
             v-for="(item, i) in items"
             :key="item"
             :to="pagesRef[i]"
@@ -102,9 +106,9 @@ export default {
       zIndex: 0,
       tab: null,
       items: [
-        "Categoría 1", "Categoría 2", "Categoría 3", "Categoría 4",
+        "Restaurantes", "Playas", "Categoría 3", "Categoría 4",
       ],
-      pagesRef: ["/", "/about", "/", "/about"],
+      pagesRef: [{ path: "/", hash: "#cat1" }, { name: "Home", hash: "#cat2" }, { path: "/", hash: "#cat3" }, { path: "/", hash: "#cat4" }],
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     };
   },
@@ -129,7 +133,4 @@ export default {
 </script>
 
 <style scoped>
-.btn-search {
-  width: 200px;
-}
 </style>
