@@ -10,6 +10,9 @@ import firebase from "firebase/app";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import vueSmoothScroll from "vue2-smooth-scroll";
+
+Vue.use(vueSmoothScroll);
 
 library.add(faAngleDoubleUp);
 Vue.component("font-awesome-icon", FontAwesomeIcon);

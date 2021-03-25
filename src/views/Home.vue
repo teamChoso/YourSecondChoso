@@ -1,6 +1,4 @@
 <template>
-  <!-- <HelloWorld/> -->
-  <!-- <Carousel /> -->
   <div>
     <template>
       <div id="cat1"></div>
@@ -30,14 +28,12 @@
       <div id="cat4"></div>
       <v-parallax src="https://f.intersailclub.com//logos/4/f/e/4fe7e0544920140110d9c9e056a037115b8ed8876b2bd-ab25e-fit-1920-1080.jpg"></v-parallax>
       <a href="#top">Go up</a>
+      <!-- <a href="#top" v-smooth-scroll>Go up</a> -->
 </template>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-import Carousel from "@/components/Carousel.vue";
 
 export default {
   data () {
@@ -59,10 +55,6 @@ export default {
   },
   name: "Home",
   components: {
-    /*
-     * HelloWorld,
-     * Carousel,
-     */
   },
 };
 </script>
