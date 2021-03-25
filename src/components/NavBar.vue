@@ -71,6 +71,7 @@
           <v-tabs-slider color="#e4b61a"></v-tabs-slider>
 
           <v-tab
+            v-smooth-scroll
             v-for="(item, i) in items"
             :key="item"
             :to="pagesRef[i]"
@@ -105,7 +106,7 @@ export default {
       zIndex: 0,
       tab: null,
       items: [
-        "Categoría 1", "Categoría 2", "Categoría 3", "Categoría 4",
+        "Restaurantes", "Playas", "Categoría 3", "Categoría 4",
       ],
       pagesRef: [{ path: "/", hash: "#cat1" }, { name: "Home", hash: "#cat2" }, { path: "/", hash: "#cat3" }, { path: "/", hash: "#cat4" }],
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",

@@ -15,11 +15,6 @@
             </v-expansion-panels>
           </v-row>
           </div>
-          <!-- <v-btn rounded class="text-white texto-blanco bg-mustard-500 hover:bg-mustard-700 w-60"  @click="pressedCatUno" color="#e4b61a">{{strShow}} subcategorias</v-btn > -->
-          <div class="flex-col justify-center bg-gray-400 bg-opacity-40 w-40 p-5 rounded" v-if="mostrarCatUno" >
-            <p>Guachinches</p>
-            <p>Italianos</p>
-          </div>
         </v-layout>
         </v-parallax>
     </div>

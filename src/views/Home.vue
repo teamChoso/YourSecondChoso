@@ -21,6 +21,8 @@ export default {
     return {
       subcat1: ["Guachinches", "Italianos"],
       subcat2: ["Las Teresitas", "Mesa del Mar"],
+      subcat3: [],
+      subcat4: [],
     };
   },
   name: "Home",
