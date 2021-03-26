@@ -1,16 +1,11 @@
 <template>
+<div>
   <v-card>
     <v-toolbar
-      color="#2c3258"
+      color="#e4b61a"
       dark
       flat
     >
-      <!-- <v-img
-          :src="require('../assets/Nasa-Logo.png')"
-          class="my-3"
-          contain
-          height="70"
-      /> -->
       <v-toolbar-title class="text-mustard">Your Second Choso</v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -34,7 +29,7 @@
             v-if="!user.loggedIn"
             rounded
             dark
-            color="#e4b61a"
+            color="#2c3258"
             to="/login"
           >
             Iniciar Sesión
@@ -44,7 +39,7 @@
             v-if="!user.loggedIn"
             rounded
             dark
-            color="#e4b61a"
+            color="#2c3258"
             to="/register"
           >
             Registrarse
@@ -56,7 +51,7 @@
             @click="signOut"
             rounded
             dark
-            color="#e4b61a"
+            color="#"
           >
             Sign Out
           </v-btn>
@@ -64,7 +59,7 @@
       </div>
 
       <template v-slot:extension>
-        <v-tabs
+        <v-tabs class="ml-2"
           v-model="tab"
           align-with-title
         >
@@ -93,6 +88,7 @@
       </v-tab-item>
     </v-tabs-items>
   </v-card>
+</div>
 </template>
 
 <script>
