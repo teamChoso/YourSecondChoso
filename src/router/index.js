@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
-import Example from "../views/Example.vue";
+import AddCategory from "../views/AddCategory.vue";
 import firebase from "firebase/app";
 import "firebase/auth";
 
@@ -26,9 +26,9 @@ const routes = [
     component: Register,
   },
   {
-    path: "/example",
-    name: "example",
-    component: Example,
+    path: "/addCategory",
+    name: "addCategory",
+    component: AddCategory,
     meta: { requiresAuth: true },
   },
   {

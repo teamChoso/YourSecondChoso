@@ -39,6 +39,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 export default {
+  name: "Login",
   data () {
     return {
       email: "",
@@ -53,7 +54,7 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then((data) => {
           console.log(data);
-          this.$router.replace({ name: "example" });
+          this.$router.replace({ name: "addCategory" });
         })
         .catch((error) => {
           this.error = error;

@@ -7,10 +7,19 @@ import "./assets/css/index.css";
 import vuetify from "./plugins/vuetify";
 import axios from "axios";
 import firebase from "firebase/app";
+import { Icon } from "leaflet";
+import "leaflet/dist/leaflet.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import vueSmoothScroll from "vue2-smooth-scroll";
+
+delete Icon.Default.prototype._getIconUrl;
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+});
 
 Vue.use(vueSmoothScroll);
 

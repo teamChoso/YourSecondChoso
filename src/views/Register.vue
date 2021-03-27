@@ -42,6 +42,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 export default {
+  name: "Register",
   methods: {
     pressed () {
       firebase
@@ -52,7 +53,7 @@ export default {
             displayName: this.email,
           });
           console.log("here");
-          this.$router.replace({ name: "example" });
+          this.$router.replace({ name: "addCategory" });
         })
         .catch((error) => (this.error = error));
     },
