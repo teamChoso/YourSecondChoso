@@ -53,7 +53,7 @@ export default {
             displayName: this.email,
           });
           console.log("here");
-          this.$router.replace({ name: "addCategory" });
+          this.$router.replace({ name: "Profile" });
         })
         .catch((error) => (this.error = error));
     },

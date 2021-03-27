@@ -13,8 +13,8 @@
         color="white"
         text
         rounded
+        @click="changeView(link)"
         class="my-2"
-        to="/"
       >
         {{ link }}
       </v-btn>
@@ -34,11 +34,14 @@ export default {
     links: [
       "Home",
       "About Us",
-      "Team",
-      "Services",
-      "Blog",
+      "Foro",
       "Contact Us",
     ],
   }),
+  methods: {
+    changeView (name) {
+      this.$router.replace({ name: name });
+    },
+  },
 };
 </script>

@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1>Bienvenid@ {{user.data.email}}!</h1>
     <hr>
       <ul>{{category}}</ul>
         <li v-for="(i,key) in dataDB" :key="key">

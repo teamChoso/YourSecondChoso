@@ -55,6 +55,17 @@
           >
             Sign Out
           </v-btn>
+
+          <v-btn
+
+            v-if="user.loggedIn"
+            to="/profile"
+            rounded
+            dark
+            color="#"
+          >
+            Perfil
+          </v-btn>
         </div>
       </div>
 
@@ -88,6 +99,8 @@
       </v-tab-item>
     </v-tabs-items>
   </v-card>
+
+        {{user}}
 </div>
 </template>
 
