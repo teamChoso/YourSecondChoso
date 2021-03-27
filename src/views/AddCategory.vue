@@ -2,6 +2,11 @@
   <div class="container">
     <h1>Bienvenid@ {{user.data.email}}!</h1>
     <hr>
+      <ul>{{category}}</ul>
+        <li v-for="(i,key) in dataDB" :key="key">
+          {{i}}
+        </li>
+
         <v-form class="loginForm" @submit.prevent="pressed"
           ref="form"
         >
@@ -19,59 +24,19 @@
             <v-text-field
               class="col-start-4 col-span-5"
               type="text"
-              v-model="elementCategory"
-              label="Elemento"
+              v-model="message"
+              label="Mensaje"
               required
             ></v-text-field>
           </div>
 
-          <template v-if="category === 'Restaurante'">
-            <div class="grid grid-cols-12">
-              <v-text-field
-                class="col-start-4 col-span-5"
-                type="text"
-                v-model="municipality"
-                label="Municipio"
-                required
-              ></v-text-field>
-            </div>
-
-            <div class="grid grid-cols-12">
-              <v-text-field
-                class="col-start-4 col-span-5"
-                type="text"
-                v-model="town"
-                label="Población"
-                required
-              ></v-text-field>
-            </div>
-
-            <div class="grid grid-cols-12">
-              <v-text-field
-                class="col-start-4 col-span-5"
-                type="text"
-                v-model="address"
-                label="Dirección"
-                required
-              ></v-text-field>
-            </div>
-          </template>
-
           <div class="grid grid-cols-12">
             <v-text-field
-              class="col-start-4 col-span-2"
-              v-model="latitude"
+              class="col-start-4 col-span-5"
               type="text"
-              name="input-10-1"
-              label="Latitud"
-            ></v-text-field>
-
-            <v-text-field
-              class="col-start-7 col-span-2"
-              v-model="longitude"
-              type="text"
-              name="input-10-1"
-              label="Longitud"
+              v-model="valoration"
+              label="Valoracion"
+              required
             ></v-text-field>
           </div>
 
@@ -98,40 +63,55 @@ import "firebase/database";
 export default {
   data () {
     return {
-      category: "",
-      elementCategory: "",
-      latitude: "",
-      longitude: "",
-      municipality: "",
-      town: "",
-      address: "",
+      category: "Restaurante",
+      message: "Default",
+      valoration: "0",
+      dataDB: null,
       rtDatabase: firebase.database(),
-      items: ["Restaurante", "Tienda", "Evento", "Otra categoría"],
+      items: ["Restaurante", "Tienda", "Evento", "Playa", "Otra categoría"],
     };
   },
   methods: {
     pressed () {
-      this.rtDatabase.ref("/" + this.category + "/" + this.elementCategory).set({
-        latitude: this.latitude,
-        longitude: this.longitude,
-        municipality: this.municipality,
-        town: this.town,
-        address: this.address,
+      this.rtDatabase.ref("/Foro/" + this.category).push({
+        category: this.category,
+        message: this.message,
+        user: this.user.data.email,
+        valoration: this.valoration,
       }).then((response) => {
-        this.category = "";
-        this.elementCategory = "";
-        this.latitude = "";
-        this.longitude = "";
-        this.municipality = "";
-        this.town = "";
-        this.address = "";
-      });
+        this.message = "";
+        this.valoration = "";
+      }).then((res) => { this.getValuesDatabase(); },
+      );
+    },
+    getValuesDatabase () {
+      this.rtDatabase.ref("/Foro/" + this.category).get()
+        .then(function (snapshot) {
+          let objeto = "";
+          if (snapshot.exists()) {
+            // Console.log(snapshot.val());
+            objeto = snapshot.val();
+          } else {
+            console.log("No data available");
+          }
+          return (objeto);
+        })
+        .then((response) => {
+          this.dataDB = response;
+          // Console.log(response);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     },
   },
   computed: {
     ...mapGetters({
       user: "user",
     }),
+  },
+  updated () {
+    this.getValuesDatabase();
   },
 };
 </script>

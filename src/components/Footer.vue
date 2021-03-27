@@ -14,6 +14,7 @@
         text
         rounded
         class="my-2"
+        to="/"
       >
         {{ link }}
       </v-btn>
