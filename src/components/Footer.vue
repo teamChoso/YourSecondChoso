@@ -8,8 +8,8 @@
       no-gutters
     >
       <v-btn
-        v-for="link in links"
-        :key="link"
+        v-for="(link,index) in links"
+        :key="index"
         color="white"
         text
         rounded
@@ -30,6 +30,7 @@
 
 <script>
 export default {
+  name: "Footer",
   data: () => ({
     links: [
       "Home",
