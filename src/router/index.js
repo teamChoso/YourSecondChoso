@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
-import AddCategory from "../views/AddCategory.vue";
+import Foro from "../views/Foro.vue";
 import firebase from "firebase/app";
 import "firebase/auth";
 
@@ -26,10 +26,14 @@ const routes = [
     component: Register,
   },
   {
-    path: "/addCategory",
-    name: "addCategory",
-    component: AddCategory,
-    meta: { requiresAuth: true },
+    path: "/foro",
+    name: "Foro",
+    component: Foro,
+  },
+  {
+    path: "/",
+    name: "Contact Us",
+    component: Home,
   },
   {
     path: "/about",
@@ -41,6 +45,18 @@ const routes = [
      * which is lazy-loaded when the route is visited.
      */
     component: () => import(/* WebpackChunkName: "about" */ "../views/About.vue"),
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    // Esto hace que no se puede acceder a esta página si no se está logeado
+    /*
+     * Route level code-splitting
+     * this generates a separate chunk (about.[hash].js) for this route
+     * which is lazy-loaded when the route is visited.
+     */
+    component: () => import(/* WebpackChunkName: "about" */ "../views/Profile.vue"),
+    meta: { requiresAuth: true },
   },
 ];
 
@@ -61,7 +77,10 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const isAuthenticated = firebase.auth().currentUser;
   if (requiresAuth && !isAuthenticated) {
+    console.log(isAuthenticated);
     next("/login");
+  } else if (!requiresAuth && !isAuthenticated) {
+    next();
   } else {
     next();
   }

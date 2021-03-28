@@ -55,6 +55,17 @@
           >
             Sign Out
           </v-btn>
+
+          <v-btn
+
+            v-if="user.loggedIn"
+            to="/profile"
+            rounded
+            dark
+            color="#"
+          >
+            Perfil
+          </v-btn>
         </div>
       </div>
 
@@ -102,7 +113,7 @@ export default {
       zIndex: 0,
       tab: null,
       items: [
-        "Restaurantes", "Playas", "Categoría 3", "Categoría 4",
+        "Restaurantes", "Playas", "Eventos", "Tiendas",
       ],
       pagesRef: [{ path: "/", hash: "#cat1" }, { name: "Home", hash: "#cat2" }, { path: "/", hash: "#cat3" }, { path: "/", hash: "#cat4" }],
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",

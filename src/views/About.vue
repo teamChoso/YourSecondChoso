@@ -68,7 +68,7 @@ import LeafLetMap from "../components/LeafLetMap";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "About",
+  name: "About Us",
   components: {
     LeafLetMap,
   },
