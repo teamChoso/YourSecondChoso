@@ -8,11 +8,12 @@
       no-gutters
     >
       <v-btn
-        v-for="link in links"
-        :key="link"
+        v-for="(link,index) in links"
+        :key="index"
         color="white"
         text
         rounded
+        @click="changeView(link)"
         class="my-2"
       >
         {{ link }}
@@ -29,6 +30,7 @@
 
 <script>
 export default {
+  name: "Footer",
   data: () => ({
     links: [
       "Home",
@@ -39,5 +41,10 @@ export default {
       "Contact Us",
     ],
   }),
+  methods: {
+    changeView (name) {
+      this.$router.replace({ name: name });
+    },
+  },
 };
 </script>

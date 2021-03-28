@@ -33,7 +33,7 @@ const routes = [
   },
   {
     path: "/about",
-    name: "About",
+    name: "About Us",
     // Esto hace que no se puede acceder a esta página si no se está logeado
     /*
      * Route level code-splitting

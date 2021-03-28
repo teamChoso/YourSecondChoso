@@ -10,6 +10,7 @@ export default new Vuex.Store({
       loggedIn: false,
       data: null,
     },
+    categoryObjectDatabase: {},
   },
   mutations: {
     addOverlay (state) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     SET_USER (state, data) {
       state.user.data = data;
+    },
+    SET_CATEGORY_OBJECT (state, objectDatabase) {
+      state.categoryObjectDatabase = objectDatabase;
     },
   },
   actions: {
@@ -37,10 +41,13 @@ export default new Vuex.Store({
         commit("SET_USER", null);
       }
     },
-
+    updateCategoryObjectDatabase (context, objectDatabase) {
+      context.commit("SET_CATEGORY_OBJECT", objectDatabase);
+    },
   },
   getters: {
     user: (state) => state.user,
+    categoryObjectDatabase: (state) => state.categoryObjectDatabase,
   },
   modules: {
   },

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <NavBar/>
-    <v-main class="mb-10">
+    <v-main>
       <router-view/>
       <v-overlay
       :z-index="zIndex"
