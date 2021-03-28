@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-card elevation="2" outlined shaped>
-        <v-card-title>{{name}}</v-card-title>
-        <v-card-subtitle>{{category}}</v-card-subtitle>
-        <v-card-text>{{msg}}</v-card-text>
+    <v-card elevation="2" outlined shaped class="p-3 w-2/3 m-auto">
+        <v-card-title class="text-mustard">{{name}}</v-card-title>
+        <v-card-subtitle class="text-blue">{{date}}</v-card-subtitle>
+        <v-card-text class="text-blue">{{msg}}</v-card-text>
     </v-card>
   </div>
 </template>
@@ -16,6 +16,10 @@ export default {
       default: "",
     },
     category: {
+      type: String,
+      default: "",
+    },
+    date: {
       type: String,
       default: "",
     },

@@ -2,7 +2,7 @@
 <div>
   <v-card>
     <v-toolbar
-      color="#e4b61a"
+      color="#2c3258"
       dark
       flat
     >
@@ -29,7 +29,7 @@
             v-if="!user.loggedIn"
             rounded
             dark
-            color="#2c3258"
+            color="#e4b61a"
             to="/login"
           >
             Iniciar Sesión
@@ -39,7 +39,7 @@
             v-if="!user.loggedIn"
             rounded
             dark
-            color="#2c3258"
+            color="#e4b61a"
             to="/register"
           >
             Registrarse
@@ -51,7 +51,7 @@
             @click="signOut"
             rounded
             dark
-            color="#"
+            color="#e4b61a"
           >
             Sign Out
           </v-btn>
@@ -62,7 +62,7 @@
             to="/profile"
             rounded
             dark
-            color="#"
+            color="#e4b61a"
           >
             Perfil
           </v-btn>
