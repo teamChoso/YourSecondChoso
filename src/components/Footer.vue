@@ -2,6 +2,7 @@
   <v-footer
     color="#2c3258"
     padless
+    class="mt-10"
   >
     <v-row
       justify="center"
@@ -13,6 +14,7 @@
         color="white"
         text
         rounded
+        @click="changeView(link)"
         class="my-2"
       >
         {{ link }}
@@ -33,11 +35,14 @@ export default {
     links: [
       "Home",
       "About Us",
-      "Team",
-      "Services",
-      "Blog",
+      "Foro",
       "Contact Us",
     ],
   }),
+  methods: {
+    changeView (name) {
+      this.$router.replace({ name: name });
+    },
+  },
 };
 </script>

@@ -17,7 +17,7 @@
 import LeafLetMap from "../components/LeafLetMap";
 
 export default {
-  name: "About",
+  name: "About Us",
   components: {
     LeafLetMap,
   },
