@@ -1,22 +1,8 @@
 <template>
-  <div class="container">
-    <hr />
+  <div class="container mb-10">
     <h1 v-if="catSelected">{{ category }}</h1>
     <h1 v-else>Escoge una categoría</h1>
-    <div class="flex flex-wrap justify-evenly">
-      <div v-for="(i, key) in dataDB" :key="key">
-        <!-- {{i.message}} -->
-        <ForoMessage
-          :name="i.user"
-          :val="i.valoration"
-          :category="i.category"
-          :msg="i.message"
-          class="my-3"
-        />
-      </div>
-    </div>
-
-      <v-form class="loginForm" @submit.prevent="pressed" ref="form">
+    <v-form class="w-3/5 m-auto mt-16 justify-items-center" @submit.prevent="pressed" ref="form">
         <div class="grid grid-cols-12">
           <v-select
             :items="items"
@@ -52,7 +38,7 @@
             <div class="grid grid-cols-12">
               <v-btn
                 color="#e4b61a"
-                class="col-start-5 col-span-3 login-btn"
+                class="col-start-5 col-span-3"
                 rounded
                 dark
                 type="submit"
@@ -63,6 +49,22 @@
           </div>
         </div>
       </v-form>
+
+    <div v-if="error.status" class="error">{{error.message}}</div>
+
+    <div class="mt-7 flex flex-col-reverse">
+      <div v-for="(i, key) in dataDB" :key="key">
+        <!-- {{i.message}} -->
+        <ForoMessage
+          :name="i.user"
+          :val="i.valoration"
+          :category="i.category"
+          :msg="i.message"
+          :date="i.date"
+          class="my-3 "
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -78,28 +80,40 @@ export default {
       category: "",
       message: "",
       valoration: "",
+      date: "",
       dataDB: null,
+      error: {
+        status: false,
+        message: "",
+      },
       rtDatabase: firebase.database(),
       items: ["Restaurante", "Tienda", "Evento", "Playa", "Otra categoría"],
     };
   },
   methods: {
     pressed () {
-      this.rtDatabase
-        .ref("/Foro/" + this.category)
-        .push({
-          category: this.category,
-          message: this.message,
-          user: this.user.data.email,
-          valoration: this.valoration,
-        })
-        .then((response) => {
-          this.message = "";
-          this.valoration = "";
-        })
-        .then((res) => {
-          this.getValuesDatabase();
-        });
+      if (this.message === "" || this.valoration === "") {
+        this.error.message = "Debes introducir los datos";
+        this.error.status = true;
+      } else {
+        this.error.status = false;
+        this.rtDatabase
+          .ref("/Foro/" + this.category)
+          .push({
+            category: this.category,
+            message: this.message,
+            user: this.user.data.email,
+            valoration: this.valoration,
+            date: this.date,
+          })
+          .then((response) => {
+            this.message = "";
+            this.valoration = "";
+          })
+          .then((res) => {
+            this.getValuesDatabase();
+          });
+      }
     },
     getValuesDatabase () {
       this.rtDatabase
@@ -123,6 +137,9 @@ export default {
           console.error(error);
         });
     },
+    MyGetDate () {
+      return (new Date().getFullYear() + "-" + (Number(new Date().getMonth()) + 1) + "-" + new Date().getDate());
+    },
   },
   computed: {
     ...mapGetters({
@@ -133,34 +150,32 @@ export default {
     },
   },
   updated () {
+    this.date = this.MyGetDate();
     this.getValuesDatabase();
   },
   components: {
     ForoMessage,
   },
+  mounted () {
+
+  },
 };
 </script>
 
 <style scoped>
-h1 {
-  margin: 50px;
-  font-size: 30px;
+.error {
+    width: 400px;
+    padding: 30px;
+    margin: 20px;
+    font-size: 21px;
+    margin: auto;
+    margin-top: 20px;
+    color: white;
+    border-radius: 10px
 }
 h1 {
   margin-top: 50px;
   font-size: 30px;
 }
-.loginForm {
-  width: 1000px;
-  margin: auto;
-  margin-top: 60px;
-}
 
-.login-btn {
-  color: white;
-}
-hr {
-  margin: auto;
-  width: 200px;
-}
 </style>
