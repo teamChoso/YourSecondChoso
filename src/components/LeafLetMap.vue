@@ -14,12 +14,6 @@
         :attribution="attribution"
       />
 
-      <l-control>
-        <p @click="showAlert">
-          Click me
-        </p>
-      </l-control>
-
       <template v-for="(item,index) in markers">
         <l-marker :lat-lng="item.latLong" :key="index" @click="showParagraph = false">
           <l-popup class="w-44">
@@ -54,7 +48,7 @@
 
 <script>
 import { latLng } from "leaflet";
-import { LMap, LTileLayer, LMarker, LPopup, LControl } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 import firebase from "firebase/app";
 import "firebase/database";
 import { mapActions } from "vuex";
@@ -66,7 +60,6 @@ export default {
     LTileLayer,
     LMarker,
     LPopup,
-    LControl,
   },
   data () {
     return {
