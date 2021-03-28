@@ -119,7 +119,7 @@ export default {
     },
     ...mapActions(["updateCenterMap"]),
   },
-  mounted () {
+  updated () {
     this.assignCategories();
   },
 };
