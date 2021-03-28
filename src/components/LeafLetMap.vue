@@ -3,7 +3,7 @@
     <l-map
       v-if="showMap"
       :zoom="zoom"
-      :center="center"
+      :center="updateCenter"
       :options="mapOptions"
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
@@ -15,7 +15,7 @@
       />
 
       <template v-for="(item,index) in markers">
-        <l-marker :lat-lng="item.latLong" :key="index" @click="showParagraph = false">
+        <l-marker v-if="(chips.includes(item.island)) || (chips.length === 0)" :lat-lng="item.latLong" :key="index" @click="showParagraph = false">
           <l-popup class="w-44">
             <div>
               <div class="flex justify-center text-xl font-semibold">{{item.name}}</div>
@@ -51,7 +51,7 @@ import { latLng } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 import firebase from "firebase/app";
 import "firebase/database";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "LeafletMap",
@@ -60,6 +60,12 @@ export default {
     LTileLayer,
     LMarker,
     LPopup,
+  },
+  props: {
+    chips: {
+      type: Array,
+      default: null,
+    },
   },
   data () {
     return {
@@ -79,8 +85,16 @@ export default {
       rtDatabase: firebase.database().ref("/"),
     };
   },
+  computed: {
+    ...mapGetters({
+      centerMap: "centerMap",
+    }),
+    updateCenter () {
+      return latLng(this.centerMap[0], this.centerMap[1]);
+    },
+  },
   methods: {
-    ...mapActions(["updateCategoryObjectDatabase"]),
+    ...mapActions(["updateCategoryObjectDatabase", "updateCenterMap"]),
     zoomUpdate (zoom) {
       this.currentZoom = zoom;
     },
@@ -98,11 +112,14 @@ export default {
           municipality: value.municipality,
           town: value.town,
           address: value.address,
+          island: value.island,
         });
+        this.latitude = Number(value.latitude);
+        this.longitude = Number(value.longitude);
       });
 
       this.updateCategoryObjectDatabase(objectDatabase);
-      this.center = this.markers[0].latLong;
+      this.updateCenterMap([this.latitude, this.longitude]);
     },
     getValuesDatabase () {
       this.rtDatabase.child("Restaurante").get()

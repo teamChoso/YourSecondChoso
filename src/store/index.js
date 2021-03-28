@@ -11,6 +11,7 @@ export default new Vuex.Store({
       data: null,
     },
     categoryObjectDatabase: {},
+    centerMap: [0, 0],
   },
   mutations: {
     addOverlay (state) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     SET_CATEGORY_OBJECT (state, objectDatabase) {
       state.categoryObjectDatabase = objectDatabase;
+    },
+    SET_CENTER_MAP (state, center) {
+      state.centerMap = center;
     },
   },
   actions: {
@@ -44,10 +48,14 @@ export default new Vuex.Store({
     updateCategoryObjectDatabase (context, objectDatabase) {
       context.commit("SET_CATEGORY_OBJECT", objectDatabase);
     },
+    updateCenterMap (context, center) {
+      context.commit("SET_CENTER_MAP", center);
+    },
   },
   getters: {
     user: (state) => state.user,
     categoryObjectDatabase: (state) => state.categoryObjectDatabase,
+    centerMap: (state) => state.centerMap,
   },
   modules: {
   },
