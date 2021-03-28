@@ -99,8 +99,6 @@
       </v-tab-item>
     </v-tabs-items>
   </v-card>
-
-        {{user}}
 </div>
 </template>
 
