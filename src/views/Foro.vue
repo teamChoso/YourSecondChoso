@@ -3,7 +3,7 @@
     <h1 v-if="catSelected">{{ category }}</h1>
     <h1 v-else>Escoge una categoría</h1>
     <v-form class="w-3/5 m-auto mt-16 justify-items-center" @submit.prevent="pressed" ref="form">
-        <div class="grid grid-cols-12">
+        <div class="grid grid-cols-11">
           <v-select
             :items="items"
             class="col-start-4 col-span-5"
@@ -15,7 +15,7 @@
         </div>
         <div v-if="user.loggedIn">
           <div v-if="catSelected">
-            <div class="grid grid-cols-12">
+            <div class="grid grid-cols-11">
               <v-text-field
                 class="col-start-4 col-span-5"
                 type="text"
@@ -25,7 +25,7 @@
               ></v-text-field>
             </div>
 
-            <div class="grid grid-cols-12">
+            <div class="grid grid-cols-11">
               <v-text-field
                 class="col-start-4 col-span-5"
                 type="text"
@@ -35,7 +35,7 @@
               ></v-text-field>
             </div>
 
-            <div class="grid grid-cols-12">
+            <div class="grid grid-cols-11">
               <v-btn
                 color="#e4b61a"
                 class="col-start-5 col-span-3"
