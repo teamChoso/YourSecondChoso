@@ -7,12 +7,20 @@
       :z-index="zIndex"
       :value="overlay"
       >
+        <Search/>
         <v-btn
           class="white--text"
-          color="teal"
+          color="#dbd7d4"
           @click="updateOverlay"
         >
-          Hide Overlay
+          Buscar
+        </v-btn>
+        <v-btn
+          class="white--text"
+          color="#e4b61a"
+          @click="updateOverlay"
+        >
+          Cancelar
         </v-btn>
       </v-overlay>
     </v-main>
@@ -23,6 +31,7 @@
 <script>
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import Search from "./components/Search";
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -31,6 +40,7 @@ export default {
   components: {
     NavBar,
     Footer,
+    Search,
   },
 
   data: () => ({
