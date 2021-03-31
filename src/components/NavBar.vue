@@ -71,7 +71,7 @@
       </div>
 
       <template v-slot:extension>
-        <v-tabs class="ml-2"
+        <v-tabs
           v-model="tab"
           align-with-title
         >
@@ -88,7 +88,6 @@
         </v-tabs>
       </template>
     </v-toolbar>
-
     <v-tabs-items v-model="tab">
       <v-tab-item
         v-for="item in items"
