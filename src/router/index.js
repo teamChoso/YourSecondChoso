@@ -35,6 +35,7 @@ const routes = [
     path: "/chat",
     name: "Contact Us",
     component: Chat,
+    meta: { requiresAuth: true },
   },
   {
     path: "/about",
@@ -69,7 +70,6 @@ const routes = [
      * which is lazy-loaded when the route is visited.
      */
     component: () => import(/* WebpackChunkName: "about" */ "../views/Subcategory.vue"),
-    meta: { requiresAuth: true },
   },
 ];
 

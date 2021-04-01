@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-if="uploaded">
+  <div class="container">
     <div class="wrapper">
       <header>
         <h1 class="text-3xl">YSC Chat</h1>
@@ -9,7 +9,7 @@
         <main>
           <div v-for="(msg, index) in messages" v-bind:key="'index-'+index"
               :class="['message', sentOrReceived(msg.userUID)]">
-            <!-- <img class="profilePhoto" :src="msg.photoURL" :alt="msg.displayName"> -->
+            <img class="profilePhoto" :src="msg.photoURL" :alt="msg.displayName">
             <p v-if="msg.type == 'text'">{{ msg.text }}</p>
             <img v-if="msg.type == 'img'" class="imgChat" :src="msg.text" :alt="msg.displayName">
           </div>
@@ -19,8 +19,13 @@
 
         <form>
           <input class="input-text" v-model="message" type="text" placeholder="Escribe un mensaje!">
-          <button class="bg-blue hover:bg-purple-900 font-bold py-2 px-4 border border-purple-900 rounded" :disabled="!message" v-on:click.prevent="sendMessage($event,'text')">📩</button>
-          <input accept="image/*" value="📎" class="input-file bg-blue hover:bg-purple-900 font-bold px-auto border border-purple-900 rounded" type="file" v-on:change.prevent="sendMessage($event,'img')">
+          <button class="bg-blue hover:bg-purple-900 font-bold py-2 px-4 border border-purple-900" :disabled="!message" v-on:click.prevent="sendMessage($event,'text')">📩</button>
+          <div>
+              <label class="w-24 h-full flex flex-col items-center py-7 bg-blue text-blue cursor-pointer hover:bg-purple-900">
+                  <span class="">📎</span>
+                  <input accept="image/*" type='file' class="hidden" v-on:change.prevent="sendMessage($event,'img')"/>
+              </label>
+          </div>
         </form>
     </section>
     </div>
@@ -41,7 +46,6 @@ export default {
       message: "",
       messages: [],
       type: "",
-      uploaded: false,
     };
   },
   methods: {
@@ -55,8 +59,9 @@ export default {
           userUID: this.user.uid,
           type: type,
           displayName: this.user.displayName,
-          // PhotoURL: this.user.photoURL,
+          photoURL: this.user.photoURL,
           text: this.message,
+          alt: "",
           createdAt: Date.now(),
         };
         await this.db.collection("messages").add(messageInfo);
@@ -64,20 +69,17 @@ export default {
         this.message = e.target.files[0];
 
         await firebase.storage().ref("images/" + this.user.uid + "/" + this.message.name).put(this.message).then((response) => {
+          const altMessage = this.message.name;
           firebase.storage().ref("images/" + this.user.uid + "/" + this.message.name).getDownloadURL().then((imgUrl) => {
             this.db.collection("messages").add({
               userUID: this.user.uid,
               type: type,
               displayName: this.user.displayName,
-              // PhotoURL: this.user.photoURL,
+              photoURL: this.user.photoURL,
               text: imgUrl,
-              alt: this.message.name,
+              alt: altMessage,
               createdAt: Date.now(),
             });
-            console.log("Uid:" + this.user.uid);
-            console.log("Type:" + type);
-            console.log("Displayname:" + this.user.displayName);
-            console.log("url:" + imgUrl);
           }).then((res) => { console.log("Imagenes cargadas correctamente"); });
         });
       }
@@ -91,7 +93,6 @@ export default {
       this.db.collection("messages").orderBy("createdAt")
         .onSnapshot((querySnap) => {
           this.messages = querySnap.docs.map((doc) => doc.data());
-          this.uploaded = true;
         });
     },
   },
@@ -146,7 +147,7 @@ body {
       background-color: #9b9183;
       main {
         padding: 10px;
-        height: 75vh;
+        height: 80vh;
         overflow-y: scroll;
         display: flex;
         flex-direction: column;
@@ -180,12 +181,6 @@ body {
           outline: none;
           border: none;
           padding: 0 10px;
-        }
-        .input-file{
-          width: 10vw;
-          color:#6649b8;
-          line-height: 1.5;
-          font-size: 10vh;
         }
       }
     }
