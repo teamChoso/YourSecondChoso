@@ -13,6 +13,11 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import vueSmoothScroll from "vue2-smooth-scroll";
+import VueAnalytics from "vue-analytics";
+
+Vue.use(VueAnalytics, {
+  id: "UA-193500857-2",
+});
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({

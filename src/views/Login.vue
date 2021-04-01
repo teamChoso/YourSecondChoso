@@ -9,6 +9,7 @@
             class="p-8 w-2/5 m-auto"
             type="email"
             v-model="email"
+            :rules="emailRules"
             label="E-mail"
             required
           ></v-text-field>
@@ -19,6 +20,7 @@
             type="password"
             name="input-10-1"
             label="Password"
+            :rules="passwordRules"
           ></v-text-field>
 
           <v-btn
@@ -31,7 +33,7 @@
             Login
           </v-btn>
     </v-form>
-        <div v-if="error" class="error">{{error.message}}</div>
+        <div v-if="error" class="error mb-10">{{error.message}}</div>
     </div>
 </template>
 
@@ -45,6 +47,13 @@ export default {
       email: "",
       password: "",
       error: "",
+      emailRules: [
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      ],
+      passwordRules: [
+        (v) => !!v || "Password is required",
+      ],
     };
   },
   methods: {
