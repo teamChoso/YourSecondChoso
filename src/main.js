@@ -17,6 +17,11 @@ import "firebase/auth";
 import "firebase/database";
 import "firebase/firestore";
 import "firebase/storage";
+import VueAnalytics from "vue-analytics";
+
+Vue.use(VueAnalytics, {
+  id: "UA-193500857-2",
+});
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
