@@ -6,6 +6,7 @@ import Register from "../views/Register.vue";
 import Foro from "../views/Foro.vue";
 import firebase from "firebase/app";
 import "firebase/auth";
+import Chat from "../components/Chat";
 
 Vue.use(VueRouter);
 
@@ -31,9 +32,9 @@ const routes = [
     component: Foro,
   },
   {
-    path: "/",
+    path: "/chat",
     name: "Contact Us",
-    component: Home,
+    component: Chat,
   },
   {
     path: "/about",
@@ -56,6 +57,18 @@ const routes = [
      * which is lazy-loaded when the route is visited.
      */
     component: () => import(/* WebpackChunkName: "about" */ "../views/Profile.vue"),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/subcategory",
+    name: "Subcategory",
+    // Esto hace que no se puede acceder a esta página si no se está logeado
+    /*
+     * Route level code-splitting
+     * this generates a separate chunk (about.[hash].js) for this route
+     * which is lazy-loaded when the route is visited.
+     */
+    component: () => import(/* WebpackChunkName: "about" */ "../views/Subcategory.vue"),
     meta: { requiresAuth: true },
   },
 ];

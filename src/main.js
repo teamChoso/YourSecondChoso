@@ -13,6 +13,10 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import vueSmoothScroll from "vue2-smooth-scroll";
+import "firebase/auth";
+import "firebase/database";
+import "firebase/firestore";
+import "firebase/storage";
 import VueAnalytics from "vue-analytics";
 
 Vue.use(VueAnalytics, {
