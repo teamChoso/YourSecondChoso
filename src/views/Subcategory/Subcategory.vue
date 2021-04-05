@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import LeafLetMap from "../components/LeafLetMap";
+import LeafLetMap from "../../components/LeafLetMap/LeafLetMap.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {

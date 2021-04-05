@@ -1,8 +1,8 @@
 <template>
-<div class="fixed">
+<div>
   <v-card>
     <v-toolbar
-      color="#e4b61a"
+      color="#2c3258"
       dark
       flat
       class="navbar-color"
