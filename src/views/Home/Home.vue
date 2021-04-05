@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Parallax from "../components/Parallax";
+import Parallax from "../../components/Parallax/Parallax";
 
 export default {
   data () {

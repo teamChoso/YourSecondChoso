@@ -74,7 +74,7 @@
 import { mapGetters } from "vuex";
 import firebase from "firebase/app";
 import "firebase/database";
-import ForoMessage from "../components/ForoMessage.vue";
+import ForoMessage from "../../components/Foro/ForoMessage.vue";
 
 export default {
   data () {

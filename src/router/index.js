@@ -1,12 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
-import Register from "../views/Register.vue";
-import Foro from "../views/Foro.vue";
+import Home from "../views/Home/Home.vue";
+import Login from "../views/Login/Login.vue";
+import Register from "../views/Register/Register.vue";
+import Foro from "../views/Foro/Foro.vue";
 import firebase from "firebase/app";
 import "firebase/auth";
-import Chat from "../components/Chat";
+import Chat from "../components/Chat/Chat";
 
 Vue.use(VueRouter);
 
@@ -46,7 +46,7 @@ const routes = [
      * this generates a separate chunk (about.[hash].js) for this route
      * which is lazy-loaded when the route is visited.
      */
-    component: () => import(/* WebpackChunkName: "about" */ "../views/About.vue"),
+    component: () => import(/* WebpackChunkName: "about" */ "../views/About/About.vue"),
   },
   {
     path: "/profile",
@@ -57,7 +57,7 @@ const routes = [
      * this generates a separate chunk (about.[hash].js) for this route
      * which is lazy-loaded when the route is visited.
      */
-    component: () => import(/* WebpackChunkName: "about" */ "../views/Profile.vue"),
+    component: () => import(/* WebpackChunkName: "about" */ "../views/Profile/Profile.vue"),
     meta: { requiresAuth: true },
   },
   {
@@ -69,7 +69,7 @@ const routes = [
      * this generates a separate chunk (about.[hash].js) for this route
      * which is lazy-loaded when the route is visited.
      */
-    component: () => import(/* WebpackChunkName: "about" */ "../views/Subcategory.vue"),
+    component: () => import(/* WebpackChunkName: "about" */ "../views/Subcategory/Subcategory.vue"),
   },
 ];
 
