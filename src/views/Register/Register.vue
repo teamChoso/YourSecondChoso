@@ -63,6 +63,10 @@
           >
             Registrarse
           </v-btn>
+          <PrimaryButton
+            name="Registrarse"
+            type="submit"
+          />
     </v-form>
     <div v-if="error" class="error mb-10">{{error}}</div>
 

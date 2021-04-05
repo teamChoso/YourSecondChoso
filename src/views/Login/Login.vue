@@ -23,15 +23,10 @@
             :rules="passwordRules"
           ></v-text-field>
 
-          <v-btn
-            color="#e4b61a"
-            class="mr-4"
-            rounded
-            dark
+          <PrimaryButton
+            name="Iniciar Sesión"
             type="submit"
-          >
-            Login
-          </v-btn>
+          />
     </v-form>
         <div v-if="error" class="error mb-10">{{error.message}}</div>
     </div>
@@ -39,6 +34,7 @@
 
 <script>
 import firebase from "firebase/app";
+import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 export default {
   name: "Login",
   data () {
@@ -68,6 +64,9 @@ export default {
           this.error = error;
         });
     },
+  },
+  components: {
+    PrimaryButton,
   },
 
 };
