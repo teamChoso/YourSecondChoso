@@ -2,7 +2,7 @@
 <div class="fixed">
   <v-card>
     <v-toolbar
-      color="#2c3258"
+      color="#e4b61a"
       dark
       flat
       class="navbar-color"
