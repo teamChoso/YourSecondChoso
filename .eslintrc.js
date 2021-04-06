@@ -28,7 +28,6 @@ module.exports = {
     "no-shadow": ["error"],
     "no-unused-vars": ["warn"],
     yoda: ["error", "never"],
-    "max-lines-per-function": ["error", 60],
     "max-nested-callbacks": ["error", 5],
     "max-params": ["error", 6],
     "max-depth": ["error", 5],

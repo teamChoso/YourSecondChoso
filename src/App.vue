@@ -10,13 +10,6 @@
         <Search/>
         <v-btn
           class="white--text"
-          color="#dbd7d4"
-          @click="updateOverlay"
-        >
-          Buscar
-        </v-btn>
-        <v-btn
-          class="white--text"
           color="#e4b61a"
           @click="updateOverlay"
         >
@@ -29,9 +22,9 @@
 </template>
 
 <script>
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import Search from "./components/Search";
+import NavBar from "./components/Navbar/NavBar";
+import Footer from "./components/Footer/Footer";
+import Search from "./components/Search/Search";
 import { mapState, mapActions } from "vuex";
 
 export default {

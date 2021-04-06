@@ -28,7 +28,8 @@
             <div class="grid grid-cols-11">
               <v-text-field
                 class="col-start-4 col-span-5"
-                type="text"
+                type="Number"
+
                 v-model="valoration"
                 label="Valoracion"
                 required
@@ -51,7 +52,7 @@
       </v-form>
 
     <div v-if="error.status" class="error">{{error.message}}</div>
-
+    <h1 v-if="catSelected">Comentarios</h1>
     <div class="mt-7 flex flex-col-reverse">
       <div v-for="(i, key) in dataDB" :key="key">
         <!-- {{i.message}} -->
@@ -61,6 +62,7 @@
           :category="i.category"
           :msg="i.message"
           :date="i.date"
+          :img="i.image"
           class="my-3 "
         />
       </div>
@@ -72,7 +74,7 @@
 import { mapGetters } from "vuex";
 import firebase from "firebase/app";
 import "firebase/database";
-import ForoMessage from "../components/ForoMessage.vue";
+import ForoMessage from "../../components/Foro/ForoMessage.vue";
 
 export default {
   data () {
@@ -82,6 +84,7 @@ export default {
       valoration: "",
       date: "",
       dataDB: null,
+      image: "",
       error: {
         status: false,
         message: "",
