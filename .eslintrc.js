@@ -1,15 +1,19 @@
 module.exports = {
   root: true,
+
   env: {
     node: true,
   },
+
   extends: [
     "plugin:vue/essential",
     "@vue/standard",
   ],
+
   parserOptions: {
     parser: "babel-eslint",
   },
+
   rules: {
     indent: ["error", 2],
     semi: ["error", "always"],
@@ -28,7 +32,7 @@ module.exports = {
     "no-shadow": ["error"],
     "no-unused-vars": ["warn"],
     yoda: ["error", "never"],
-    "max-lines-per-function": ["error", 60],
+    "max-lines-per-function": ["error", 70],
     "max-nested-callbacks": ["error", 5],
     "max-params": ["error", 6],
     "max-depth": ["error", 5],
@@ -56,4 +60,16 @@ module.exports = {
     "no-new-func": ["error"],
     "comma-dangle": ["error", "always-multiline"],
   },
+
+  overrides: [
+    {
+      files: [
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)",
+      ],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 };

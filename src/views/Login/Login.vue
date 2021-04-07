@@ -1,7 +1,7 @@
 <template>
     <div>
-      <h1 class="mt-20 text-2xl">Register</h1>
-      <hr>
+        <h1 class="mt-20 text-2xl">Login</h1>
+        <hr>
         <v-form class="mb-20" @submit.prevent="pressed"
           ref="form"
         >
@@ -9,6 +9,7 @@
             class="p-8 w-2/5 m-auto"
             type="email"
             v-model="email"
+            :rules="emailRules"
             label="E-mail"
             required
           ></v-text-field>
@@ -19,58 +20,59 @@
             type="password"
             name="input-10-1"
             label="Password"
-            hint="At least 8 characters"
-            counter
+            :rules="passwordRules"
           ></v-text-field>
 
-          <v-btn
-            color="#e4b61a"
-            class="mr-4"
-            rounded
-            dark
+          <PrimaryButton
+            name="Iniciar Sesión"
             type="submit"
-          >
-            Register
-          </v-btn>
+          />
     </v-form>
-    <div v-if="error" class="error">{{error.message}}</div>
-
+        <div v-if="error" class="error mb-10">{{error.message}}</div>
     </div>
 </template>
 
 <script>
 import firebase from "firebase/app";
-import "firebase/auth";
+import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 export default {
-  name: "Register",
-  methods: {
-    pressed () {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
-        .then((data) => {
-          data.user.updateProfile({
-            displayName: this.email,
-          });
-          console.log("here");
-          this.$router.replace({ name: "Profile" });
-        })
-        .catch((error) => (this.error = error));
-    },
-  },
+  name: "Login",
   data () {
     return {
       email: "",
       password: "",
       error: "",
+      emailRules: [
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      ],
+      passwordRules: [
+        (v) => !!v || "Password is required",
+      ],
     };
+  },
+  methods: {
+    pressed () {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then((data) => {
+          console.log(data);
+          this.$router.replace({ name: "Profile" });
+        })
+        .catch((error) => {
+          this.error = error;
+        });
+    },
+  },
+  components: {
+    PrimaryButton,
   },
 
 };
 </script>
 
 <style scoped>
-/* Da error con lang=scss */
 .error {
     width: 400px;
     padding: 30px;
@@ -81,8 +83,9 @@ export default {
     color: white;
     border-radius: 10px
 }
+
 hr {
   margin:auto;
   width: 200px
 }
-</style>
+</style> ;,

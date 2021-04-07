@@ -7,6 +7,7 @@
       :z-index="zIndex"
       :value="overlay"
       >
+        <Search/>
         <v-btn
           class="white--text"
           color="teal"
@@ -21,8 +22,9 @@
 </template>
 
 <script>
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import NavBar from "./components/Navbar/NavBar";
+import Footer from "./components/Footer/Footer";
+import Search from "./components/Search/Search";
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -31,6 +33,7 @@ export default {
   components: {
     NavBar,
     Footer,
+    Search,
   },
 
   data: () => ({

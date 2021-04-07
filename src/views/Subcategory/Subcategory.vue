@@ -54,8 +54,48 @@
 </template>
 
 <script>
+<<<<<<< HEAD:src/views/About.vue
 export default {
 
+=======
+import LeafLetMap from "../../components/LeafLetMap/LeafLetMap.vue";
+import { mapGetters, mapActions } from "vuex";
+
+export default {
+  name: "About Us",
+  data () {
+    return {
+      chips: [],
+      items: [],
+    };
+  },
+  components: {
+    LeafLetMap,
+  },
+  computed: {
+    ...mapGetters({
+      objectDatabase: "categoryObjectDatabase",
+    }),
+  },
+  methods: {
+    remove (item) {
+      this.chips.splice(this.chips.indexOf(item), 1);
+      this.chips = [...this.chips];
+    },
+    assignCategories () {
+      Object.entries(this.objectDatabase).forEach(([key, value]) => {
+        if (!this.items.includes(value.island)) {
+          this.items.push(value.island);
+        }
+      });
+      console.log(this.items);
+    },
+    ...mapActions(["updateCenterMap"]),
+  },
+  updated () {
+    this.assignCategories();
+  },
+>>>>>>> main:src/views/Subcategory/Subcategory.vue
 };
 </script>
 
