@@ -12,6 +12,7 @@ export default new Vuex.Store({
     },
     categoryObjectDatabase: {},
     centerMap: [0, 0],
+    subcategory: "Restaurante",
   },
   mutations: {
     addOverlay (state) {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     },
     SET_CENTER_MAP (state, center) {
       state.centerMap = center;
+    },
+    SET_CURRENT_SUBCATEGORY (state, subcategory) {
+      state.subcategory = subcategory;
     },
   },
   actions: {
@@ -51,11 +55,15 @@ export default new Vuex.Store({
     updateCenterMap (context, center) {
       context.commit("SET_CENTER_MAP", center);
     },
+    updateCurrentSubcategory (context, subcategory) {
+      context.commit("SET_CURRENT_SUBCATEGORY", subcategory);
+    },
   },
   getters: {
     user: (state) => state.user,
     categoryObjectDatabase: (state) => state.categoryObjectDatabase,
     centerMap: (state) => state.centerMap,
+    subCategory: (state) => state.subcategory,
   },
   modules: {
   },

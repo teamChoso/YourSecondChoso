@@ -7,14 +7,18 @@
           row
         >
           <v-radio
+            label="Todas"
+            value="todas"
+          ></v-radio>
+          <v-radio
             v-for="(item,index) in categories"
             :key="index"
             :label="item"
-            :value="index"
+            :value="item"
           ></v-radio>
         </v-radio-group>
       </div>
-      <div class="col-start-3 col-span-3">
+      <!-- <div class="col-start-3 col-span-3">
         <v-radio-group
           v-model="subcategorySelected"
           row
@@ -26,7 +30,7 @@
             :value="i"
           ></v-radio>
         </v-radio-group>
-      </div>
+      </div> -->
       <div class="col-span-6">
         <v-card color="#2c3258">
           <v-card-title>
@@ -43,7 +47,7 @@
           <v-data-table
             light
             :headers="headers"
-            :items="elements"
+            :items="categorySelected === 'todas' ? elements:filterElements"
             :search="search"
             class="elevation-1"
           >
@@ -68,16 +72,15 @@ import { mapActions } from "vuex";
 export default {
   data: () => ({
     search: "",
-    categorySelected: 0,
+    categorySelected: "todas",
     subcategorySelected: 0,
-    categories: ["Todas", "Restaurantes", "Playas", "Eventos", "Tiendas"],
+    categories: ["Restaurantes", "Playas", "Eventos", "Tiendas"],
     subcategories:
     [
-      ["Todas", "Guachinches", "Areperas", "Arena Blanca", "Arena Negra", "Rocosa", "Carnavales", "Romerías", "Centros Comerciales", "Tiendas tradicionales"],
-      ["Todas", "Guachinches", "Areperas"],
-      ["Todas", "Arena Blanca", "Arena Negra", "Rocosa"],
-      ["Todas", "Carnavales", "Romerías"],
-      ["Todas", "Centros Comerciales", "Tiendas tradicionales"],
+      ["Guachinches", "Areperas"],
+      ["Arena Blanca", "Arena Negra", "Rocosa"],
+      ["Carnavales", "Romerías"],
+      ["Centros Comerciales", "Tiendas tradicionales"],
     ],
     headers: [
       {
@@ -107,49 +110,49 @@ export default {
     ],
     elements: [
       {
-        name: "Frozen Yogurt",
-        category: 159,
-        subcategory: 6.0,
-        path: "/",
+        name: "Casa Lito",
+        category: "Restaurantes",
+        subcategory: "Guachinches",
       },
       {
-        name: "Ice cream sandwich",
-        category: 237,
-        subcategory: 9.0,
-        path: "/about",
+        name: "El Pole",
+        category: "Restaurantes",
+        subcategory: "Guachinches",
       },
       {
-        name: "Eclair",
-        category: 262,
-        subcategory: 16.0,
-        path: "/subcategory",
+        name: "La Casona",
+        category: "Restaurantes",
+        subcategory: "Guachinches",
       },
       {
-        name: "Cupcake",
-        category: 305,
-        subcategory: 3.7,
-        path: "/chat",
+        name: "Los Gómez",
+        category: "Eventos",
+        subcategory: "Guachinches",
       },
       {
-        name: "Gingerbread",
-        category: 356,
-        subcategory: 16.0,
-        path: "/",
+        name: "Los Rincones",
+        category: "Playas",
+        subcategory: "Guachinches",
       },
       {
-        name: "Jelly bean",
-        category: 375,
-        subcategory: 0.0,
-        path: "/chat",
+        name: "Casa Lito",
+        category: "Restaurantes",
+        subcategory: "Areperas",
       },
     ],
   }),
   computed: {
+    filterElements () {
+      // Return this.elements.filter((element) => element.category.includes(this.categories[this.categorySelected]) && element.subcategory.includes(this.subcategories[this.subcategorySelected]));
+      return this.elements.filter((element) => element.category.includes(this.categorySelected));
+    },
   },
   methods: {
-    ...mapActions(["updateOverlay"]),
+    ...mapActions(["updateOverlay", "updateCurrentSubcategory"]),
     itemSelected (item) {
-      this.$router.replace({ path: this.elements[this.elements.indexOf(item)].path });
+      this.$router.replace({ path: "/subcategory" });
+      const subcategory = this.elements[this.elements.indexOf(item)].category;
+      this.updateCurrentSubcategory(subcategory);
       this.updateOverlay();
     },
   },

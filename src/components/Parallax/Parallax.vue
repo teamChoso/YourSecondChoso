@@ -9,7 +9,7 @@
               <v-expansion-panel class="elevation-0" style="background-color: rgba(255,255,255,0);">
                 <v-expansion-panel-header class="bg-mustard text-white rounded-full py-3 px-6" @click="pressedCatUno">{{strShow}}  subcategorías</v-expansion-panel-header>
                 <v-expansion-panel-content class="text-white py-2">
-                  <router-link style="color: white"  class="block text-white py-2 hover:bg-mustard rounded-full" :to="{name: 'Subcategory'}" v-for="(item,index) in subCat" :key="index">{{ item }}</router-link>
+                  <router-link style="color: white"  class="block text-white py-2 hover:bg-mustard rounded-full" :to="{name: 'Subcategory'}" v-for="(item,index) in subCat" :key="index" @click.native="updateCurrentSubcategory(cat)">{{ item }}</router-link>
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data () {
     return {
@@ -50,6 +52,7 @@ export default {
       // (this.mostrarCatDos ? this.mostrarCatDos = false : this.mostrarCatDos = true);
       (this.strShow === "Mostrar" ? this.strShow = "Ocultar" : this.strShow = "Mostrar");
     },
+    ...mapActions(["updateCurrentSubcategory"]),
   },
 };
 </script>
