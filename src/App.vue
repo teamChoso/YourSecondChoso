@@ -10,10 +10,10 @@
         <Search/>
         <v-btn
           class="white--text"
-          color="teal"
+          color="#e4b61a"
           @click="updateOverlay"
         >
-          Hide Overlay
+          Cancelar
         </v-btn>
       </v-overlay>
     </v-main>

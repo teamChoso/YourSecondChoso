@@ -35,7 +35,7 @@
         >
           <v-img
             height="250"
-            src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+            :src="imgURL"
           ></v-img>
 
           <v-card-title>{{key}}</v-card-title>
@@ -73,6 +73,14 @@
             >
               Centrar en el mapa
             </v-btn>
+            <v-btn
+              v-if="subCategory === 'Tiendas'"
+              color="#e4b61a"
+              text
+              @click="shop"
+            >
+              Ir a la tienda
+            </v-btn>
           </v-card-actions>
         </v-card>
       </div>
@@ -87,6 +95,7 @@
 <script>
 import LeafLetMap from "../../components/LeafLetMap/LeafLetMap.vue";
 import { mapGetters, mapActions } from "vuex";
+import firebase from "firebase/app";
 
 export default {
   name: "About Us",
@@ -94,6 +103,7 @@ export default {
     return {
       chips: [],
       items: [],
+      imgURL: "",
     };
   },
   components: {
@@ -102,6 +112,7 @@ export default {
   computed: {
     ...mapGetters({
       objectDatabase: "categoryObjectDatabase",
+      subCategory: "subCategory",
     }),
   },
   methods: {
@@ -117,10 +128,19 @@ export default {
       });
       console.log(this.items);
     },
+    getSubcategoryImg () {
+      firebase.storage().ref("/subcategory/" + this.subCategory + ".jpg").getDownloadURL().then((imgUrl) => {
+        this.imgURL = imgUrl;
+      }).then((res) => { console.log("Imagenes cargadas correctamente"); });
+    },
     ...mapActions(["updateCenterMap"]),
   },
   updated () {
     this.assignCategories();
+    this.getSubcategoryImg();
+  },
+  mounted () {
+    this.getSubcategoryImg();
   },
 };
 </script>

@@ -88,6 +88,7 @@ export default {
   computed: {
     ...mapGetters({
       centerMap: "centerMap",
+      subCategory: "subCategory",
     }),
     updateCenter () {
       return latLng(this.centerMap[0], this.centerMap[1]);
