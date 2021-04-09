@@ -18,6 +18,9 @@ import "firebase/database";
 import "firebase/firestore";
 import "firebase/storage";
 import VueAnalytics from "vue-analytics";
+import VueSwal from "vue-swal";
+
+Vue.use(VueSwal);
 
 Vue.use(VueAnalytics, {
   id: "UA-193500857-2",

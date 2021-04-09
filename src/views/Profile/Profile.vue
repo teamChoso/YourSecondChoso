@@ -108,32 +108,86 @@ export default {
               username.updateProfile({
                 photoURL: imgUrl,
               });
+              console.log(username);
+              return username;
             })
             .then((res) => {
-              this.profileImage = username.photoURL;
+              console.log(res);
+              this.profileImage = res.photoURL;
               console.log("Imagenes cargadas correctamente");
             });
         });
     },
     changeUsername () {
-      console.log("entro");
-      if (this.checkUserExists(this.username) || this.username === "") {
+      if (this.checkUserExists(this.username)) {
         console.log("Usuario ya existe");
         this.error = "El nombre de usuario ya existe";
+      } else if (this.username === "") {
+        console.log("Añadir algún usuario");
+        this.error = "Debes añadir algún username";
       } else {
+        this.error = "";
         const username = this.currentUser;
-        console.log(this.dataDB);
+        console.log("Usuario disponible");
         this.rtDatabase.ref("/User/" + username.uid)
           .set({
             username: this.username,
             email: this.email,
           }).then((data) => {
+            console.log("this.dataDB.username: ", this.dataDB.username);
             this.rtDatabase
-              .ref("/UserTaken/" + this.dataDB.username.username).remove()
+              .ref("/UserTaken/" + this.dataDB.username).remove()
               .then((res) => {
                 this.rtDatabase
                   .ref("/UserTaken/" + this.username).set({
                     username: this.username,
+                  }).then((res2) => {
+                    this.$swal({
+                      title: "Nombre de usuario cambiado correctamente.",
+                      button: { backgroundColor: "#9acd32" },
+                      icon: "success",
+                    });
+                    this.rtDatabase
+                      .ref("/User/" + username.uid)
+                      .get()
+                      .then(function (snapshot) {
+                        let objeto = "";
+                        if (snapshot.exists()) {
+                          // Console.log(snapshot.val());
+                          objeto = snapshot.val();
+                        } else {
+                          console.log("No data available");
+                        }
+                        return objeto;
+                      })
+                      .then((response) => {
+                        this.dataDB = response;
+                        console.log(this.dataDB);
+                      })
+                      .catch(function (error) {
+                        console.error(error);
+                      });
+
+                    this.rtDatabase
+                      .ref("/UserTaken")
+                      .get()
+                      .then(function (snapshot) {
+                        let objeto = "";
+                        if (snapshot.exists()) {
+                          // Console.log(snapshot.val());
+                          objeto = snapshot.val();
+                        } else {
+                          console.log("No data available");
+                        }
+                        return objeto;
+                      })
+                      .then((response) => {
+                        this.allUsernames = response;
+                        // Console.log(response);
+                      })
+                      .catch(function (error) {
+                        console.error(error);
+                      });
                   });
                 console.log("Ta OK")
                   .catch((error) => (console.log(error)));
@@ -144,6 +198,9 @@ export default {
     changeEmail () {},
     checkUserExists (username) {
       return (username in this.allUsernames);
+    },
+    changeUserSuccess () {
+      this.$swal("Usuario creado con éxito");
     },
   },
   mounted () {
@@ -164,7 +221,7 @@ export default {
       })
       .then((response) => {
         this.dataDB = response;
-        this.username = response.username;
+        // This.username = response.username;
         this.email = response.email;
         console.log(this.dataDB);
       })
@@ -187,7 +244,6 @@ export default {
       })
       .then((response) => {
         this.allUsernames = response;
-        console.log("carmeen" in response);
         // Console.log(response);
       })
       .catch(function (error) {
