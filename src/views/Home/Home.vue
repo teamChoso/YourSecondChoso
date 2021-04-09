@@ -1,13 +1,29 @@
 <template>
   <div>
     <div id="cat1"></div>
-    <Parallax cat="Restaurantes" :subCat="subcat1" img="https://blogimages.musement.com/2019/09/Comida-Canaria-AdobeStock_272575441.jpg"/>
+    <Parallax
+      cat="Restaurantes"
+      :subCat="subcat1"
+      img="https://blogimages.musement.com/2019/09/Comida-Canaria-AdobeStock_272575441.jpg"
+    />
     <div id="cat2"></div>
-    <Parallax cat="Playas" :subCat="subcat2" img="https://www.hdhotels.com/cobi/media/hdhotels.com/56/07/Papagayo_Lanzarote.jpg"/>
+    <Parallax
+      cat="Playas"
+      :subCat="subcat2"
+      img="https://www.hdhotels.com/cobi/media/hdhotels.com/56/07/Papagayo_Lanzarote.jpg"
+    />
     <div id="cat3"></div>
-    <Parallax cat="Eventos" :subCat="subcat3" img="https://s0.blt.ro/guidetocanaryislands.com/img/o/media/grancanaria/events/carnival/las-palmas-de-gran-canaria/las-palmas-de-gran-canaria-carnival-spain-1200-675.1594383467.jpg"/>
+    <Parallax
+      cat="Eventos"
+      :subCat="subcat3"
+      img="https://s0.blt.ro/guidetocanaryislands.com/img/o/media/grancanaria/events/carnival/las-palmas-de-gran-canaria/las-palmas-de-gran-canaria-carnival-spain-1200-675.1594383467.jpg"
+    />
     <div id="cat4"></div>
-    <Parallax cat="Tiendas" :subCat="subcat4" img="https://www.webtenerife.com/es/que-hacer/ocio/compras/centros-comerciales/lists/galeriamultimediatenerife/siammall-1.jpg"/>
+    <Parallax
+      cat="Tiendas"
+      :subCat="subcat4"
+      img="https://www.webtenerife.com/es/que-hacer/ocio/compras/centros-comerciales/lists/galeriamultimediatenerife/siammall-1.jpg"
+    />
     <a href="#top">Go up</a>
     <!-- <a href="#top" v-smooth-scroll>Go up</a> -->
   </div>
@@ -38,11 +54,11 @@ export default {
 </script>
 
 <style lang ="scss" scoped>
-a{
-  position:fixed;
-  bottom:1%;
-  right:1%;
-  z-index:9999;
+a {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  z-index: 9999;
   border: 10px;
-  }
+}
 </style>

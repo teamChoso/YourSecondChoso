@@ -19,7 +19,7 @@
             v-model="password"
             type="password"
             name="input-10-1"
-            label="Password"
+            label="Contraseña"
             :rules="passwordRules"
           ></v-text-field>
 
@@ -43,11 +43,11 @@ export default {
       password: "",
       error: "",
       emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+        (v) => !!v || "E-mail requerido",
+        (v) => /.+@.+\..+/.test(v) || "El e-mail debe ser válido",
       ],
       passwordRules: [
-        (v) => !!v || "Password is required",
+        (v) => !!v || "Contraseña requerida",
       ],
     };
   },
