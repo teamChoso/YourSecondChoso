@@ -53,28 +53,19 @@
             </div>
           </div>
           </div> -->
-
-          <v-btn
-            color="#e4b61a"
-            class="mr-4"
-            rounded
-            dark
-            type="submit"
-          >
-            Registrarse
-          </v-btn>
           <PrimaryButton
             name="Registrarse"
             type="submit"
           />
     </v-form>
-    <div v-if="error" class="error mb-10">{{error}}</div>
+    <div v-if="error!=''" class="error mb-10">{{error}}</div>
 
     </div>
 </template>
 
 <script>
 import firebase from "firebase/app";
+import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 export default {
   name: "Register",
   data () {
@@ -124,61 +115,29 @@ export default {
                 .set({
                   email: this.email,
                   username: this.userName,
+                })
+                .then(() => {
+                  this.rtDatabase
+                    .ref("/UserTaken/" + this.userName).set({
+                      username: this.userName,
+                    });
+                }).then(() => {
+                  this.$router.replace({ name: "Profile" });
                 });
-              this.rtDatabase
-                .ref("/UserTaken/" + this.userName).set({
-                  username: this.userName,
-                });
-              this.$router.replace({ name: "Profile" });
             })
             .catch((error) => (this.error = error));
-        }).then((res) => { console.log("Imagenes cargadas correctamente"); });
-        // If (!this.uploadImage) {
-
-        /*
-         * } else {
-         *   firebase
-         *     .auth()
-         *     .createUserWithEmailAndPassword(this.email, this.password)
-         *     .then((data) => {
-         *       console.log(data.uid);
-         *       firebase.storage().ref("profile/" + data.uid + "/default.png").put(this.profileImage).then((response) => {
-         *         const username = this.username;
-         *         firebase.storage().ref("profile/" + data.uid + "/default.png").getDownloadURL().then((imgUrl) => {
-         *           data.user.updateProfile({
-         *             displayName: username,
-         *             photoURL: imgUrl,
-         *           });
-         *         }).then((res) => { console.log("Imagenes cargadas correctamente"); });
-         *       });
-         *     })
-         *     .then(() => {
-         *       this.rtDatabase
-         *         .ref("/User/" + firebase.auth().currentUser.uid)
-         *         .set({
-         *           email: this.email,
-         *           username: this.userName,
-         *         });
-         *       this.rtDatabase
-         *         .ref("/UserTaken/" + this.userName).set({
-         *           username: this.userName,
-         *         });
-         *       this.$router.replace({ name: "Profile" });
-         *     })
-         *     .catch((error) => (this.error = error));
-         * }
-         */
+        }).then((res) => {
+          console.log("Imagenes cargadas correctamente");
+        });
       }
     },
     checkUserExists (username) {
-      return (username in this.dataDB);
+      console.log(this.dataDB);
+      if (this.dataDB !== "") {
+        return username in this.dataDB;
+      }
+      return false;
     },
-    /*
-     * SaveImage (e) {
-     *   this.profileImage = e.target.files[0];
-     *   console.log(e.target.files[0]);
-     * },
-     */
   },
   mounted () {
     this.rtDatabase
@@ -196,12 +155,13 @@ export default {
       })
       .then((response) => {
         this.dataDB = response;
-        console.log("carmeen" in response);
-        console.log(response);
       })
       .catch(function (error) {
-        console.error(error);
+        this.error = error;
       });
+  },
+  components: {
+    PrimaryButton,
   },
 };
 </script>
