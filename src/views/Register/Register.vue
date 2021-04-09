@@ -18,7 +18,7 @@
             class="p-8 w-2/5 m-auto"
             type="text"
             v-model="userName"
-            label="User name"
+            label="Username"
             :rules="nameRules"
             required
           ></v-text-field>
@@ -28,7 +28,7 @@
             v-model="password"
             type="password"
             name="input-10-1"
-            label="Password"
+            label="Contraseña"
             :rules="passwordRules"
             counter
           ></v-text-field>
@@ -90,15 +90,15 @@ export default {
       rtDatabase: firebase.database(),
       emailRules: [
         (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+        (v) => /.+@.+\..+/.test(v) || "El E-mail debe ser válido",
       ],
       nameRules: [
         (v) => !!v || "Username is required",
-        (v) => (v && v.length >= 4) || "Username must be at least 4 characters",
+        (v) => (v && v.length >= 4) || "El username debe tener al menos 4 caracteres",
       ],
       passwordRules: [
-        (v) => !!v || "Password is required",
-        (v) => (v && v.length >= 6) || "Password must be at least 6 characters",
+        (v) => !!v || "Contraseña requerida",
+        (v) => (v && v.length >= 6) || "La contraseña debe tener al menos 6 caracteres",
       ],
     };
   },
