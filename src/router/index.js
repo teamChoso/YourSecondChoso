@@ -71,6 +71,29 @@ const routes = [
      */
     component: () => import(/* WebpackChunkName: "about" */ "../views/Subcategory/Subcategory.vue"),
   },
+  {
+    path: "/shop",
+    name: "Shop",
+    // Esto hace que no se puede acceder a esta página si no se está logeado
+    /*
+     * Route level code-splitting
+     * this generates a separate chunk (about.[hash].js) for this route
+     * which is lazy-loaded when the route is visited.
+     */
+    component: () => import(/* WebpackChunkName: "about" */ "../views/Shop/Shop.vue"),
+  },
+  {
+    path: "/cart",
+    name: "Cart",
+    // Esto hace que no se puede acceder a esta página si no se está logeado
+    /*
+     * Route level code-splitting
+     * this generates a separate chunk (about.[hash].js) for this route
+     * which is lazy-loaded when the route is visited.
+     */
+    component: () => import(/* WebpackChunkName: "about" */ "../views/Cart/Cart.vue"),
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = new VueRouter({

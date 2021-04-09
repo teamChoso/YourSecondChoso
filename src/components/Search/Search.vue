@@ -136,7 +136,7 @@ export default {
       },
       {
         name: "Casa Lito",
-        category: "Restaurantes",
+        category: "Tiendas",
         subcategory: "Areperas",
       },
     ],
