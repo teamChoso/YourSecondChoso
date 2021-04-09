@@ -62,6 +62,7 @@ export default {
         })
         .catch((error) => {
           this.error = error;
+          this.error.message = "Credenciales erróneas";
         });
     },
   },
