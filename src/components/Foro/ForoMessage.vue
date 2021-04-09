@@ -1,20 +1,22 @@
 <template>
-  <div class ="flex justify-center w-auto w-64">
-    <div class="mt-4">
-      <v-avatar
-      size="50px">
-        <img
-        src="https://librenoticias.com/wp-content/uploads/2020/08/default-user-image.png"
-        :alt="name"
-      >
-      </v-avatar>
-    </div>
-    <div class="p-3 w-2/3">
-      <v-card elevation="2" outlined class="">
-        <v-card-title class="text-blue inline justify-start">{{name}}</v-card-title>
-        <v-card-subtitle class="text-blue inline justify-self-end">{{date}}</v-card-subtitle>
-        <v-card-text class="text-blue">{{msg}}</v-card-text>
-      </v-card>
+  <div class ="flex flex-col w-auto h-36 px-8">
+    <div class ="flex items-stretch shadow-2xl my-auto">
+      <div class="w-4 ml-6 mr-20 my-auto">
+        <v-avatar
+        size="70px">
+          <img
+          src="https://librenoticias.com/wp-content/uploads/2020/08/default-user-image.png"
+          :alt="name"
+        >
+        </v-avatar>
+      </div>
+      <div class="w-8/9 my-auto">
+        <div class="flex justify-start">
+          <div class="text-blue font-bold">{{name}}</div>
+          <div class="text-blue italic">{{date}}</div>
+        </div>
+        <div class="text-blue mx-auto text-xl">{{msg}}</div>
+      </div>
     </div>
   </div>
 </template>
