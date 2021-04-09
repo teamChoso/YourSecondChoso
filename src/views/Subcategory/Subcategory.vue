@@ -133,6 +133,9 @@ export default {
         this.imgURL = imgUrl;
       }).then((res) => { console.log("Imagenes cargadas correctamente"); });
     },
+    shop () {
+      this.$router.replace({ name: "Shop" });
+    },
     ...mapActions(["updateCenterMap"]),
   },
   updated () {
