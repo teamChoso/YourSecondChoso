@@ -20,11 +20,12 @@ import "firebase/storage";
 import VueAnalytics from "vue-analytics";
 import VueSwal from "vue-swal";
 
-Vue.use(VueSwal);
-
 Vue.use(VueAnalytics, {
   id: "UA-193500857-2",
+  router,
 });
+
+Vue.use(VueSwal);
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
