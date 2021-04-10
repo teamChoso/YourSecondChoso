@@ -28,8 +28,8 @@ export default {
     return {
       loading: false,
       lineItems: [],
-      successURL: "https://tahichemena.github.io/curso_frontend_2019/stripe/success.html",
-      cancelURL: "https://tahichemena.github.io/curso_frontend_2019/stripe/canceled.html",
+      successURL: "https://yoursecondchoso.com/success",
+      cancelURL: "https://yoursecondchoso.com/failed",
     };
   },
   methods: {
@@ -38,6 +38,8 @@ export default {
       this.$refs.checkoutRef.redirectToCheckout();
     },
     assignProducts () {
+      const parsed = JSON.stringify(this.products);
+      localStorage.setItem("products", parsed);
       this.products.forEach((product) => {
         this.lineItems.push({ price: product.price, quantity: product.amount });
       });

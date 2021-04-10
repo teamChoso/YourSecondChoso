@@ -83,6 +83,30 @@ const routes = [
     component: () => import(/* WebpackChunkName: "about" */ "../views/Shop/Shop.vue"),
   },
   {
+    path: "/failed",
+    name: "Failed",
+    // Esto hace que no se puede acceder a esta página si no se está logeado
+    /*
+     * Route level code-splitting
+     * this generates a separate chunk (about.[hash].js) for this route
+     * which is lazy-loaded when the route is visited.
+     */
+    component: () => import(/* WebpackChunkName: "about" */ "../views/Failed/Failed.vue"),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/success",
+    name: "Success",
+    // Esto hace que no se puede acceder a esta página si no se está logeado
+    /*
+     * Route level code-splitting
+     * this generates a separate chunk (about.[hash].js) for this route
+     * which is lazy-loaded when the route is visited.
+     */
+    component: () => import(/* WebpackChunkName: "about" */ "../views/Success/Success.vue"),
+    meta: { requiresAuth: true },
+  },
+  {
     path: "/cart",
     name: "Cart",
     // Esto hace que no se puede acceder a esta página si no se está logeado
