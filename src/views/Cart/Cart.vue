@@ -58,13 +58,13 @@
           </v-list-item-action>
         </v-list-item>
       </v-list>
+      <StripeComponent/>
     </v-card>
-    <StripeComponent :items="items"/>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import StripeComponent from "../../components/StripeComponent/StripeComponent";
 
 export default {
@@ -85,17 +85,18 @@ export default {
   methods: {
     addOne (index) {
       this.products[index].amount = this.products[index].amount + 1;
+      this.updateProductsCart(this.products);
     },
     removeOne (index) {
       if (this.products[index].amount > 0) {
         this.products[index].amount = this.products[index].amount - 1;
+        this.updateProductsCart(this.products);
+      }
+      if (this.products[index].amount === 0) {
+        this.products.splice(index, 1);
       }
     },
-  },
-  mounted () {
-    this.products.forEach((product) => {
-      this.items.push({ price: product.price, quantity: product.amount });
-    });
+    ...mapActions(["updateProductsCart"]),
   },
 
 };

@@ -1,10 +1,17 @@
 <template>
   <div class="container mb-10">
-    <h1 v-if="catSelected">{{ category }}</h1>
-    <h1 v-else>Escoge una categoría</h1>
-    <v-form class="w-3/5 m-auto mt-16 justify-items-center" @submit.prevent="pressed" ref="form">
-        <div class="grid grid-cols-11">
-          <v-select
+    <v-card>
+      <v-toolbar
+        flat
+        color="#9b9183"
+        dark
+      >
+        <v-toolbar-title v-if="catSelected">{{ category }}</v-toolbar-title>
+        <v-toolbar-title v-else>Escoge una categoría</v-toolbar-title>
+      </v-toolbar>
+
+      <v-card-text>
+        <v-select
             :items="items"
             class="col-start-4 col-span-5"
             label="Categorías"
@@ -12,18 +19,16 @@
             v-model="category"
             outlined
           ></v-select>
-        </div>
+
         <div v-if="user.loggedIn">
           <div v-if="catSelected">
-            <div class="grid grid-cols-11">
-              <v-text-field
-                class="col-start-4 col-span-5"
-                type="text"
-                v-model="message"
+            <v-textarea
+              filled
+              v-model="message"
                 label="Mensaje"
+                maxlength="600"
                 required
-              ></v-text-field>
-            </div>
+            ></v-textarea>
 
             <div class="grid grid-cols-11">
               <v-text-field
@@ -35,21 +40,27 @@
                 required
               ></v-text-field>
             </div>
-
-            <div class="grid grid-cols-11">
-              <v-btn
-                color="#e4b61a"
-                class="col-start-5 col-span-3"
-                rounded
-                dark
-                type="submit"
-              >
-                Enviar mensaje
-              </v-btn>
-            </div>
           </div>
         </div>
-      </v-form>
+
+      </v-card-text>
+
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <div class="flex justify-start mb-4">
+          <v-btn
+            :disabled="(message == '') || (valoration == '')"
+            color="#e4b61a"
+            rounded
+            dark
+            type="submit"
+            @click="pressed"
+          >
+            Enviar mensaje
+          </v-btn>
+        </div>
+      </v-card-actions>
+    </v-card>
 
     <div v-if="error.status" class="error">{{error.message}}</div>
     <h1 v-if="catSelected">Comentarios</h1>
@@ -73,12 +84,12 @@
 <script>
 import { mapGetters } from "vuex";
 import firebase from "firebase/app";
-import "firebase/database";
 import ForoMessage from "../../components/Foro/ForoMessage.vue";
 
 export default {
   data () {
     return {
+      currentUser: firebase.auth().currentUser,
       category: "",
       message: "",
       valoration: "",
@@ -108,6 +119,7 @@ export default {
             user: this.user.data.email,
             valoration: this.valoration,
             date: this.date,
+            image: this.currentUser.photoURL,
           })
           .then((response) => {
             this.message = "";

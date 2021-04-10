@@ -121,9 +121,10 @@ export default {
                     .ref("/UserTaken/" + this.userName).set({
                       username: this.userName,
                     });
-                }).then(() => {
-                  this.$router.replace({ name: "Profile" });
                 });
+            })
+            .then(() => {
+              this.$router.replace({ path: "/" });
             })
             .catch((error) => (this.error = error));
         }).then((res) => {
