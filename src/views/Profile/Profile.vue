@@ -41,16 +41,10 @@
             <PrimaryButton v-if="username!=''" class="w-12 text-sm md:w-40 mb-2"
             name="Cambiar username"
              @click.native="changeUsername"
-          />
+            />
           <div v-else class="error">Debe introducir datos.</div>
           </v-form>
         </template>
-        <!-- <span class="inline-block align-text-bottom my-2"
-          ><b>Username:</b> {{ dataDB.username }}
-        </span>
-        <span class="inline-block align-text-bottom my-2"
-          ><b>Correo:</b> {{ dataDB.email }}</span
-        > -->
       </div>
     </div>
     <div v-if="error" class="error mb-10">{{error}}</div>
@@ -109,11 +103,11 @@ export default {
                 photoURL: imgUrl,
               });
               console.log(username);
-              return username;
+              return imgUrl;
             })
             .then((res) => {
               console.log(res);
-              this.profileImage = res.photoURL;
+              this.profileImage = res;
               console.log("Imagenes cargadas correctamente");
             });
         });
@@ -195,7 +189,6 @@ export default {
           });
       }
     },
-    changeEmail () {},
     checkUserExists (username) {
       return (username in this.allUsernames);
     },
