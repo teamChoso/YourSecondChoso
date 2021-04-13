@@ -2,16 +2,24 @@
   <div>
     <v-card>
       <v-toolbar color="#2c3258" dark flat class="navbar-color">
-        <img src="logo_transparent.png" alt="Logo de Your Second Choso" @click="toHome" class="w-28 h-28">
-        <v-toolbar-title class="text-mustard"
-          > <p @click="toHome">Your Second Choso</p> </v-toolbar-title
-        >
+        <img
+          src="logo_transparent.png"
+          alt="Logo de Your Second Choso"
+          @click="toHome"
+          class="lg:w-28 lg:h-28 w-12 h-12"
+        />
+        <v-toolbar-title class="text-mustard">
+          <p @click="toHome" class="lg:mb-4 mb-0">Your Second Choso</p>
+        </v-toolbar-title>
 
         <v-spacer></v-spacer>
         <!-- <h1>{{user}}</h1> -->
-        <div class="flex justify-end space-x-9 mt-10">
+        <div class="lg:hidden w-20">
+          <DropDown class="mr-8" />
+        </div>
+        <div class="lg:flex lg:justify-end lg:space-x-9 lg:mt-10 hidden">
           <v-btn
-            class="text-white w-12 text-sm md:w-48"
+            class="text-white w-12 text-sm md:w-48 lg:block hidden"
             outlined
             rounded
             @click="updateOverlay"
@@ -20,22 +28,20 @@
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
 
-          <PrimaryButton class="w-12 text-sm md:w-40 mb-2"
+          <PrimaryButton
+            class="w-12 text-sm md:w-40 mb-2"
             v-if="!user.loggedIn"
             path="/login"
             name="Iniciar Sesión"
           />
-          <PrimaryButton class="w-12 text-sm md:w-40 mb-2 ml-2"
+          <PrimaryButton
+            class="w-12 text-sm md:w-40 mb-2 ml-2"
             v-if="!user.loggedIn"
             path="/register"
             name="Registrarse"
           />
 
-          <PrimaryButton
-            v-if="user.loggedIn"
-            path="/profile"
-            name="Perfil"
-          />
+          <PrimaryButton v-if="user.loggedIn" path="/profile" name="Perfil" />
 
           <PrimaryButton
             v-if="user.loggedIn"
@@ -68,6 +74,7 @@ import { mapState, mapActions, mapGetters } from "vuex";
 import firebase from "firebase/app";
 import "firebase/auth";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import DropDown from "../DropDown/DropDown";
 
 export default {
   name: "NavBar",
@@ -109,6 +116,7 @@ export default {
   },
   components: {
     PrimaryButton,
+    DropDown,
   },
 };
 </script>
