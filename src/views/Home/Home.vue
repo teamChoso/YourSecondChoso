@@ -24,7 +24,15 @@
       :subCat="subcat4"
       img="https://www.webtenerife.com/es/que-hacer/ocio/compras/centros-comerciales/lists/galeriamultimediatenerife/siammall-1.jpg"
     />
-    <a href="#top">Go up</a>
+    <v-btn
+      class="custom"
+      color="#fee970"
+      fab
+      dark
+      href="#top"
+    >
+      <v-icon>mdi-arrow-up-bold-outline</v-icon>
+    </v-btn>
     <!-- <a href="#top" v-smooth-scroll>Go up</a> -->
   </div>
 </template>
@@ -36,9 +44,9 @@ export default {
   data () {
     return {
       subcat1: ["Guachinches", "Areperas"],
-      subcat2: ["Arena blanca", "Arena negra", "Rocosa"],
-      subcat3: ["Carnavales", "Romerías"],
-      subcat4: ["Centros comerciales", "Tiendas tradicionales"],
+      subcat2: ["Arena blanca", "Arena negra"],
+      subcat3: ["General"],
+      subcat4: ["Tradicionales"],
     };
   },
   methods: {
@@ -54,11 +62,13 @@ export default {
 </script>
 
 <style lang ="scss" scoped>
-a {
+
+.custom {
   position: fixed;
   bottom: 1%;
   right: 1%;
   z-index: 9999;
   border: 10px;
+  color: #9b9183;
 }
 </style>
