@@ -50,7 +50,6 @@
 import { latLng } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 import firebase from "firebase/app";
-import "firebase/database";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -82,12 +81,13 @@ export default {
         zoomSnap: 0.5,
       },
       showMap: true,
-      rtDatabase: firebase.database().ref("/"),
+      rtDatabase: firebase.database(),
     };
   },
   computed: {
     ...mapGetters({
       centerMap: "centerMap",
+      category: "category",
       subCategory: "subCategory",
     }),
     updateCenter () {
@@ -106,6 +106,7 @@ export default {
       this.showParagraph = !this.showParagraph;
     },
     assignValuesDatabase (objectDatabase) {
+      this.markers = [];
       Object.entries(objectDatabase).forEach(([key, value]) => {
         this.markers.push({
           name: key,
@@ -123,7 +124,7 @@ export default {
       this.updateCenterMap([this.latitude, this.longitude]);
     },
     getValuesDatabase () {
-      this.rtDatabase.child("Restaurante").get()
+      this.rtDatabase.ref("/" + this.category + "/" + this.subCategory).get()
         .then((snapshot) => {
           let objeto = "";
           if (snapshot.exists()) {
@@ -139,6 +140,12 @@ export default {
         .catch(function (error) {
           console.error(error);
         });
+    },
+  },
+  watch: {
+    // Cada vez que la pregunta cambie, esta función será ejecutada
+    subCategory: function () {
+      this.getValuesDatabase();
     },
   },
   mounted () {

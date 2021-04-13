@@ -8,15 +8,15 @@
       no-gutters
     >
       <v-btn
-        v-for="(link,index) in links"
+        v-for="(value,index) in paths"
         :key="index"
         color="white"
         text
         rounded
-        @click="changeView(link)"
+        @click="changeView(value.path)"
         class="my-2"
       >
-        {{ link }}
+        {{ value.name }}
       </v-btn>
       <v-col
         class="bg-blue lighten-2 py-4 text-center white--text"
@@ -32,16 +32,16 @@
 export default {
   name: "Footer",
   data: () => ({
-    links: [
-      "Home",
-      "About Us",
-      "Foro",
-      "Contact Us",
+    paths: [
+      { name: "Inicio", path: "/" },
+      { name: "Nosotros", path: "/about" },
+      { name: "Foro", path: "/foro" },
+      { name: "Contacto", path: "/chat" },
     ],
   }),
   methods: {
-    changeView (name) {
-      this.$router.replace({ name: name });
+    changeView (path) {
+      this.$router.replace({ path: path });
     },
   },
 };

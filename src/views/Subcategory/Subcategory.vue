@@ -25,9 +25,8 @@
     </v-combobox>
 
     <div class="flex justify-center flex-wrap">
-      <div v-for="(item,key) in objectDatabase" class="m-10" :key="key">
+      <div v-for="(item,key) in objectFiltered" class="m-10" :key="key">
         <v-card
-          v-if="(chips.includes(item.island)) || (chips.length === 0)"
           width="350"
           elevation="24"
           outlined
@@ -74,7 +73,7 @@
               Centrar en el mapa
             </v-btn>
             <v-btn
-              v-if="subCategory === 'Tiendas'"
+              v-if="category === 'Tiendas'"
               color="#e4b61a"
               text
               @click="shop"
@@ -112,8 +111,12 @@ export default {
   computed: {
     ...mapGetters({
       objectDatabase: "categoryObjectDatabase",
+      category: "category",
       subCategory: "subCategory",
     }),
+    objectFiltered () {
+      return Object.fromEntries(Object.entries(this.objectDatabase).filter(([key, value]) => (this.chips.includes(value.island)) || (this.chips.length === 0)));
+    },
   },
   methods: {
     remove (item) {
@@ -126,10 +129,9 @@ export default {
           this.items.push(value.island);
         }
       });
-      console.log(this.items);
     },
     getSubcategoryImg () {
-      firebase.storage().ref("/subcategory/" + this.subCategory + ".jpg").getDownloadURL().then((imgUrl) => {
+      firebase.storage().ref("/subcategory/" + this.category + ".jpg").getDownloadURL().then((imgUrl) => {
         this.imgURL = imgUrl;
       }).then((res) => { console.log("Imagenes cargadas correctamente"); });
     },
@@ -139,11 +141,16 @@ export default {
     ...mapActions(["updateCenterMap"]),
   },
   updated () {
-    this.assignCategories();
     this.getSubcategoryImg();
+  },
+  watch: {
+    chips () {
+      this.assignCategories();
+    },
   },
   mounted () {
     this.getSubcategoryImg();
+    this.assignCategories();
   },
 };
 </script>

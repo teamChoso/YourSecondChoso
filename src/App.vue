@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <NavBar/>
+    <NavBar class="sticky top-0 z-10"/>
     <v-main>
       <router-view/>
       <v-overlay
