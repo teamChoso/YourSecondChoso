@@ -2,8 +2,9 @@
   <div>
     <v-card>
       <v-toolbar color="#2c3258" dark flat class="navbar-color">
+        <img src="logo_transparent.png" alt="Logo de Your Second Choso" @click="toHome" class="w-28 h-28">
         <v-toolbar-title class="text-mustard"
-          >Your Second Choso</v-toolbar-title
+          > <p @click="toHome">Your Second Choso</p> </v-toolbar-title
         >
 
         <v-spacer></v-spacer>
@@ -58,13 +59,6 @@
           </v-tabs>
         </template>
       </v-toolbar>
-      <v-tabs-items v-model="tab">
-        <v-tab-item v-for="item in items" :key="item">
-          <v-card flat>
-            <v-card-text v-text="text"></v-card-text>
-          </v-card>
-        </v-tab-item>
-      </v-tabs-items>
     </v-card>
   </div>
 </template>
@@ -81,12 +75,13 @@ export default {
     return {
       zIndex: 0,
       tab: null,
-      items: ["Restaurantes", "Playas", "Eventos", "Tiendas"],
+      items: ["Restaurantes", "Playas", "Eventos", "Tiendas", "Foro"],
       pagesRef: [
         { path: "/", hash: "#cat1" },
         { name: "Home", hash: "#cat2" },
         { path: "/", hash: "#cat3" },
         { path: "/", hash: "#cat4" },
+        { path: "/foro" },
       ],
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -101,6 +96,9 @@ export default {
         .then(() => {
           this.$router.replace({ name: "login" });
         });
+    },
+    toHome () {
+      this.$router.replace({ name: "Home" });
     },
   },
   computed: {
