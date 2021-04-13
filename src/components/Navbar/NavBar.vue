@@ -43,7 +43,7 @@
           />
         </div>
 
-        <template v-slot:extension>
+        <template v-slot:extension class="fixed">
           <v-tabs v-model="tab" align-with-title>
             <v-tabs-slider color="#e4b61a"></v-tabs-slider>
 
@@ -123,4 +123,7 @@ export default {
   background: linear-gradient(38deg, rgba(44,50,88,1) 0%, rgba(254,233,112,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2c3258",endColorstr="#fee970",GradientType=1);
 } */
+.fixed {
+  position: fixed;
+}
 </style>
