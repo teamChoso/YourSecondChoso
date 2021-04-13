@@ -26,7 +26,7 @@
             <v-img
             height="40"
             width="40"
-            src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+            :src="item.path"
           ></v-img>
           </v-list-item-avatar>
 
