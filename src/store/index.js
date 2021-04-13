@@ -12,7 +12,8 @@ export default new Vuex.Store({
     },
     categoryObjectDatabase: {},
     centerMap: [0, 0],
-    subcategory: "Restaurante",
+    subcategory: "",
+    category: "",
     products: [],
   },
   mutations: {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     },
     SET_CENTER_MAP (state, center) {
       state.centerMap = center;
+    },
+    SET_CURRENT_CATEGORY (state, category) {
+      state.category = category;
     },
     SET_CURRENT_SUBCATEGORY (state, subcategory) {
       state.subcategory = subcategory;
@@ -62,6 +66,9 @@ export default new Vuex.Store({
     updateCurrentSubcategory (context, subcategory) {
       context.commit("SET_CURRENT_SUBCATEGORY", subcategory);
     },
+    updateCurrentCategory (context, category) {
+      context.commit("SET_CURRENT_CATEGORY", category);
+    },
     updateProductsCart (context, products) {
       context.commit("SET_PRODUCTS", products);
     },
@@ -70,6 +77,7 @@ export default new Vuex.Store({
     user: (state) => state.user,
     categoryObjectDatabase: (state) => state.categoryObjectDatabase,
     centerMap: (state) => state.centerMap,
+    category: (state) => state.category,
     subCategory: (state) => state.subcategory,
     products: (state) => state.products,
   },

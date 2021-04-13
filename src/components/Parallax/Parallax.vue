@@ -9,7 +9,7 @@
               <v-expansion-panel class="elevation-0" style="background-color: rgba(255,255,255,0);">
                 <v-expansion-panel-header class="bg-mustard text-white rounded-full py-3 px-6 text-shadow" @click="pressedCatUno">{{strShow}}  subcategorías</v-expansion-panel-header>
                 <v-expansion-panel-content class="text-white py-2 text-shadow">
-                  <router-link style="color: white"  class="block text-white py-2 hover:bg-mustard rounded-full" :to="{name: 'Subcategory'}" v-for="(item,index) in subCat" :key="index" @click.native="updateCurrentSubcategory(cat)">{{ item }}</router-link>
+                  <router-link style="color: white"  class="block text-white py-2 hover:bg-mustard rounded-full" :to="{name: 'Subcategory'}" v-for="(item,index) in subCat" :key="index" @click.native="updateData(cat, item)">{{ item }}</router-link>
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
@@ -48,11 +48,15 @@ export default {
       // (this.mostrarCatUno ? this.mostrarCatUno = false : this.mostrarCatUno = true);
       (this.strShow === "Mostrar" ? this.strShow = "Ocultar" : this.strShow = "Mostrar");
     },
-    pressedCatDos () {
-      // (this.mostrarCatDos ? this.mostrarCatDos = false : this.mostrarCatDos = true);
-      (this.strShow === "Mostrar" ? this.strShow = "Ocultar" : this.strShow = "Mostrar");
+    pressedCatDos (cat, subcat) {
+      console.log(cat + " : " + subcat);
+      // (this.mostrarCatDos ? this.mostrarCatDos = false : this.mostrarCatDos = true);;
     },
-    ...mapActions(["updateCurrentSubcategory"]),
+    updateData (category, subcategory) {
+      this.updateCurrentCategory(category);
+      this.updateCurrentSubcategory(subcategory);
+    },
+    ...mapActions(["updateCurrentSubcategory", "updateCurrentCategory"]),
   },
 };
 </script>

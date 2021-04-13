@@ -148,12 +148,14 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["updateOverlay", "updateCurrentSubcategory"]),
+    ...mapActions(["updateOverlay", "updateCurrentSubcategory", "updateCurrentCategory"]),
     itemSelected (item) {
-      this.$router.replace({ path: "/subcategory" });
-      const subcategory = this.elements[this.elements.indexOf(item)].category;
-      this.updateCurrentSubcategory(subcategory);
+      const category = this.elements[this.elements.indexOf(item)].category;
+      const subCategory = this.elements[this.elements.indexOf(item)].subcategory;
+      this.updateCurrentCategory(category);
+      this.updateCurrentSubcategory(subCategory);
       this.updateOverlay();
+      this.$router.replace({ path: "/subcategory" });
     },
   },
 };

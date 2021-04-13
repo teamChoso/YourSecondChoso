@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="mt-20 text-2xl">Login</h1>
+        <h1 class="mt-20 text-2xl">Inicio de sesión</h1>
         <hr>
         <v-form class="mb-20" @submit.prevent="pressed"
           ref="form"
