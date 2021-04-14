@@ -98,6 +98,17 @@
     <div class="flex justify-center">
       <LeafLetMap :chips="chips"/>
     </div>
+    <v-overlay
+      z-index="0"
+      :value="loading"
+      >
+        <v-progress-circular
+          :size="100"
+          :width="10"
+          color="#e4b61a"
+          indeterminate
+        ></v-progress-circular>
+      </v-overlay>
   </div>
 
 </template>
@@ -116,6 +127,7 @@ export default {
       imgURL: "",
       page: 1,
       currentPage: 0,
+      loading: false,
     };
   },
   components: {
@@ -146,7 +158,10 @@ export default {
     getSubcategoryImg () {
       firebase.storage().ref("/subcategory/" + this.category + ".jpg").getDownloadURL().then((imgUrl) => {
         this.imgURL = imgUrl;
-      }).then((res) => { console.log("Imagenes cargadas correctamente"); });
+      }).then((res) => {
+        console.log("Imagenes cargadas correctamente");
+        setTimeout(() => { this.loading = false; }, 1000);
+      });
     },
     shop (island) {
       localStorage.setItem("island", island);
@@ -155,7 +170,6 @@ export default {
     ...mapActions(["updateCenterMap"]),
   },
   updated () {
-    this.getSubcategoryImg();
     this.assignCategories();
   },
   watch: {
@@ -169,9 +183,18 @@ export default {
       if (this.page === 3) {
         this.currentPage = 12;
       }
+      if (this.page === 4) {
+        this.currentPage = 18;
+      }
+    },
+    subCategory () {
+      this.loading = true;
+      this.assignCategories();
+      this.getSubcategoryImg();
     },
   },
   mounted () {
+    this.loading = true;
     this.getSubcategoryImg();
     this.assignCategories();
   },
