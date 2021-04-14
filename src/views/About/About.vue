@@ -7,7 +7,6 @@
     <div class="flex mt-6 justify-center">
       <div class="w-96 h-1 rounded-full bg-blue inline-flex"></div>
     </div>
-  </div>
 
   <!-- First Profile  -->
   <div class="grid grid-cols-4 my-5">
@@ -22,13 +21,11 @@
          <a href="https://www.google.com"><v-icon size=50 title="Linkedin">mdi-linkedin</v-icon></a>
         </div>
       </div>
-    </div>
-  </div>
 
-<!-- break line -->
-    <div class="flex mt-6 justify-center">
-      <div class="w-3/4 h-1 rounded-full bg-gray-300 inline-flex"></div>
-    </div>
+      <!-- break line -->
+      <div class="flex mt-6 justify-center">
+        <div class="w-3/4 h-1 rounded-full bg-gray-300 inline-flex"></div>
+      </div>
 
 <!-- Second Profile -->
   <div class="grid grid-cols-4 my-5">
@@ -41,15 +38,13 @@
             <a href="https://www.google.com"><v-icon size=50 title="Linkedin">mdi-linkedin</v-icon></a>
             <a href="https://github.com/carcasgon"><v-hover value="true"><v-icon size=50 title="Github">mdi-github</v-icon></v-hover></a>
           </div>
-          <div class="col-span-1 flex justify-end"><img src="../../assets/About/ca_carmen.jpg" class="h-64 w-72 rounded-2xl" alt=""></div>
         </div>
-    </div>
-  </div>
+      </div>
 
-<!-- break line -->
-    <div class="flex mt-6 justify-center">
-      <div class="w-3/4 h-1 rounded-full bg-gray-300 inline-flex"></div>
-    </div>
+      <!-- break line -->
+      <div class="flex mt-6 justify-center">
+        <div class="w-3/4 h-1 rounded-full bg-gray-300 inline-flex"></div>
+      </div>
 
 <!-- Third Profile -->
   <div class="grid grid-cols-4 my-5">
@@ -66,12 +61,8 @@
       </div>
     </div>
   </div>
-
-</div>
-
 </template>
 
 <script>
-export default {
-};
+export default {};
 </script>
