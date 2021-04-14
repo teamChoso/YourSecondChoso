@@ -84,10 +84,10 @@ export default {
       tab: null,
       items: ["Restaurantes", "Playas", "Eventos", "Tiendas", "Foro"],
       pagesRef: [
-        { path: "/", hash: "#cat1" },
-        { name: "Home", hash: "#cat2" },
-        { path: "/", hash: "#cat3" },
-        { path: "/", hash: "#cat4" },
+        { path: "/", hash: "#restaurantes" },
+        { name: "Home", hash: "#playas" },
+        { path: "/", hash: "#eventos" },
+        { path: "/", hash: "#tiendas" },
         { path: "/foro" },
       ],
       text:

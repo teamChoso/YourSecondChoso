@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1 class="mt-10 text-2xl">Modifica tus datos personales</h1>
-    <div class="flex justify-center m-10">
+    <div class="lg:flex justify-center lg:m-10">
       <div class="mr-3">
-        <img :src="profileImage" alt="" class="h-40 w-40 m-auto" />
-        <div class="flex items-center justify-center bg-grey w-60 mt-4">
+        <img :src="profileImage" alt="Imagen de perfil" class="h-40 w-40 m-auto" />
+        <div class="lg:flex lg:items-center lg:justify-center bg-grey w-60 lg:mt-4 m-auto">
           <label
             class="flex flex-col items-center py-3 bg-white text-blue rounded-lg border border-blue cursor-pointer hover:bg-blue hover:text-white"
           >
@@ -28,7 +28,7 @@
           </label>
         </div>
       </div>
-      <div class="w-60 text-left p-5">
+      <div class="w-60 text-left p-5 lg:m-0 m-auto">
         <template>
           <v-form ref="form" lazy-validation>
             <v-text-field
@@ -42,7 +42,7 @@
             name="Cambiar username"
              @click.native="changeUsername"
             />
-          <div v-else class="error">Debe introducir datos.</div>
+          <div class="lg:w-64 lg:p-8 lg:m-5 text-lg m-auto mt-5 text-white rounded-xl h-auto bg-red-500 text-center" v-else>Debe introducir datos.</div>
           </v-form>
         </template>
       </div>
@@ -252,15 +252,5 @@ export default {
 <style scoped>
 img {
   border-radius: 50%;
-}
-.error {
-    width: 400px;
-    padding: 30px;
-    margin: 20px;
-    font-size: 21px;
-    margin: auto;
-    margin-top: 20px;
-    color: white;
-    border-radius: 10px
 }
 </style>

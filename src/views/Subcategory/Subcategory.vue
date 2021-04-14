@@ -24,69 +24,91 @@
       </template>
     </v-combobox>
 
-    <div class="flex justify-center flex-wrap">
-      <div v-for="(item,key) in objectFiltered" class="m-10" :key="key">
-        <v-card
-          width="350"
-          elevation="24"
-          outlined
-          shaped
-        >
-          <v-img
-            height="250"
-            :src="imgURL"
-          ></v-img>
-
-          <v-card-title>{{key}}</v-card-title>
-
-          <v-card-text>
-            <v-row
-              align="center"
-              class="mx-0"
+    <template v-for="i in Math.ceil(Object.entries(objectFiltered).length / 6)">
+      <section v-if="page == i" :key="i">
+        <div class="flex justify-center flex-wrap">
+          <div v-for="(item,index) in Object.entries(objectFiltered).slice((i - 1) * 6, i * 6)" class="m-10" :key="index">
+            <v-card
+              width="350"
+              elevation="24"
+              outlined
+              shaped
             >
-              <v-rating
-                :value="2.5"
-                color="amber"
-                dense
-                half-increments
-                readonly
-                size="14"
-              ></v-rating>
+              <v-img
+                height="250"
+                :src="imgURL"
+              ></v-img>
 
-              <div class="grey--text ml-4">
-                4.5 (413)
-              </div>
-            </v-row>
+              <v-card-title>{{Object.entries(objectFiltered)[index+currentPage][0]}}</v-card-title>
 
-            <div class="my-4 text-xl">
-              {{item.municipality}}
-            </div>
-            <div><span class="font-bold">Dirección:</span> {{item.address}}</div>
-          </v-card-text>
+              <v-card-text>
+                <v-row
+                  align="center"
+                  class="mx-0"
+                >
+                  <v-rating
+                    :value="2.5"
+                    color="amber"
+                    dense
+                    half-increments
+                    readonly
+                    size="14"
+                  ></v-rating>
 
-          <v-card-actions>
-            <v-btn
-              color="deep-purple lighten-2"
-              text
-              @click="updateCenterMap([Number(item.latitude), Number(item.longitude)])"
-            >
-              Centrar en el mapa
-            </v-btn>
-            <v-btn
-              v-if="category === 'Tiendas'"
-              color="#e4b61a"
-              text
-              @click="shop"
-            >
-              Ir a la tienda
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </div>
+                  <div class="grey--text ml-4">
+                    4.5 (413)
+                  </div>
+                </v-row>
+
+                <div class="my-4 text-xl">
+                  {{Object.entries(objectFiltered)[index+currentPage][1].municipality}}
+                </div>
+                <div><span class="font-bold">Dirección:</span> {{Object.entries(objectFiltered)[index+currentPage][1].address}}</div>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-btn
+                  color="deep-purple lighten-2"
+                  text
+                  @click="updateCenterMap([Number(Object.entries(objectFiltered)[index+currentPage][1].latitude), Number(Object.entries(objectFiltered)[index+currentPage][1].longitude)])"
+                >
+                  Centrar en el mapa
+                </v-btn>
+                <v-btn
+                  v-if="category === 'Tiendas'"
+                  color="#e4b61a"
+                  text
+                  @click="shop(Object.entries(objectFiltered)[index+currentPage][1].island)"
+                >
+                  Ir a la tienda
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </div>
+        </div>
+      </section>
+    </template>
+    <div class="text-center mb-10">
+      <v-pagination
+        v-model="page"
+        :length="Math.ceil(Object.entries(objectFiltered).length / 6)"
+        circle
+      ></v-pagination>
     </div>
     <div class="flex justify-center">
       <LeafLetMap :chips="chips"/>
     </div>
+    <v-overlay
+      z-index="0"
+      :value="loading"
+      >
+        <v-progress-circular
+          :size="100"
+          :width="10"
+          color="#e4b61a"
+          indeterminate
+        ></v-progress-circular>
+      </v-overlay>
   </div>
 
 </template>
@@ -103,6 +125,9 @@ export default {
       chips: [],
       items: [],
       imgURL: "",
+      page: 1,
+      currentPage: 0,
+      loading: false,
     };
   },
   components: {
@@ -133,22 +158,43 @@ export default {
     getSubcategoryImg () {
       firebase.storage().ref("/subcategory/" + this.category + ".jpg").getDownloadURL().then((imgUrl) => {
         this.imgURL = imgUrl;
-      }).then((res) => { console.log("Imagenes cargadas correctamente"); });
+      }).then((res) => {
+        console.log("Imagenes cargadas correctamente");
+        setTimeout(() => { this.loading = false; }, 1000);
+      });
     },
-    shop () {
+    shop (island) {
+      localStorage.setItem("island", island);
       this.$router.replace({ name: "Shop" });
     },
     ...mapActions(["updateCenterMap"]),
   },
   updated () {
-    this.getSubcategoryImg();
+    this.assignCategories();
   },
   watch: {
-    chips () {
+    page () {
+      if (this.page === 1) {
+        this.currentPage = 0;
+      }
+      if (this.page === 2) {
+        this.currentPage = 6;
+      }
+      if (this.page === 3) {
+        this.currentPage = 12;
+      }
+      if (this.page === 4) {
+        this.currentPage = 18;
+      }
+    },
+    subCategory () {
+      this.loading = true;
       this.assignCategories();
+      this.getSubcategoryImg();
     },
   },
   mounted () {
+    this.loading = true;
     this.getSubcategoryImg();
     this.assignCategories();
   },
