@@ -1,24 +1,24 @@
 <template>
   <div>
-    <div id="cat1"></div>
+    <div id="restaurantes"></div>
     <Parallax
       cat="Restaurantes"
       :subCat="subcat1"
       :img="require('../../assets/inicio/restaurantes.jpg')"
     />
-    <div id="cat2"></div>
+    <div id="playas"></div>
     <Parallax
       cat="Playas"
       :subCat="subcat2"
       :img="require('../../assets/inicio/playas.jpg')"
     />
-    <div id="cat3"></div>
+    <div id="eventos"></div>
     <Parallax
       cat="Eventos"
       :subCat="subcat3"
       :img="require('../../assets/inicio/eventos.jpg')"
     />
-    <div id="cat4"></div>
+    <div id="tiendas"></div>
     <Parallax
       cat="Tiendas"
       :subCat="subcat4"
