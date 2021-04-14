@@ -23,11 +23,9 @@
               <v-list-item-title><router-link :to="{path: '/register'}"><span class="text-black">Registro</span> </router-link></v-list-item-title>
           </v-list>
 
-          <v-list v-if="user.loggedIn" class="bg-gray-400">
-            <v-list-item link>
-              <v-list-item-title><router-link :to="{path: '/profile'}">Perfil</router-link></v-list-item-title>
-              <v-list-item-title @click="signOut"><router-link :to="{path: '/login'}">Cerrar sesión</router-link></v-list-item-title>
-            </v-list-item>
+          <v-list v-if="user.loggedIn" class="bg-black">
+              <v-list-item-title><router-link :to="{path: '/profile'}"><span class="text-black">Perfil</span></router-link></v-list-item-title>
+              <v-list-item-title @click="signOut"><router-link :to="{path: '/login'}"><span class="text-black">Cerrar sesión</span></router-link></v-list-item-title>
           </v-list>
         </v-menu>
       </v-row>
