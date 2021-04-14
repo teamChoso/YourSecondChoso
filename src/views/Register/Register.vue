@@ -6,7 +6,7 @@
           ref="form"
         >
           <v-text-field
-            class="p-8 w-2/5 m-auto"
+            class="p-8 w-3/5 m-auto lg:w-2/5"
             type="email"
             v-model="email"
             label="E-mail"
@@ -15,7 +15,7 @@
           ></v-text-field>
 
           <v-text-field
-            class="p-8 w-2/5 m-auto"
+            class="p-8 w-3/5 m-auto lg:w-2/5"
             type="text"
             v-model="userName"
             label="Username"
@@ -24,7 +24,7 @@
           ></v-text-field>
 
           <v-text-field
-            class="p-8 w-2/5 m-auto"
+            class="p-8 w-3/5 m-auto lg:w-2/5"
             v-model="password"
             type="password"
             name="input-10-1"
