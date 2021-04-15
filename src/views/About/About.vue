@@ -16,7 +16,7 @@
         tanto tiene por descubrir.
       </p>
       <div class="flex mt-6 justify-center">
-        <div class="w-40 h-1 rounded-full bg-indigo-500 inline-flex"></div>
+        <div class="w-96 h-1 rounded-full bg-blue inline-flex"></div>
       </div>
     </div>
 
@@ -24,7 +24,7 @@
       <!-- First Profile  -->
       <div class="lg:grid lg:grid-cols-4 my-5">
         <div class="lg:col-span-3 rounded">
-          <div class="lg:grid lg:grid-cols-3">
+          <div class="lg:grid lg:grid-cols-3 rounded border-r-8 border-mustard ">
             <div class="lg:col-span-1 m-auto">
               <img
                 src="../../assets/About/jp_juanpa.jpg"
@@ -33,13 +33,12 @@
               />
             </div>
             <div class="col-span-2 lg:text-left lg:ml-5 justify-center">
-              <h1 class="text-xl text-blue font-bold m-auto">Pedro Gonzalez</h1>
-              <h2 class="text-xl mb-4 text-mustard">Web Developer</h2>
-              <p class="lg:mr-4 mr-0">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-                facilis. Lorem ipsum dolor sit, amet consectetur adipisicing
-                elit. Commodi, accusantium?
+              <h1 class="text-2xl text-blue font-bold m-auto">Juan Pablo Claros Romero</h1>
+              <h2 class="text-xl mb-4 text-mustard">Front-End Developer | Palmero hasta la tumba</h2>
+              <p class="lg:mr-4 mr-0">Mas conocido como Juampi el palmero. Apasionado de los videojuegos y todo lo relacionado con desarrollo de aplicaciones y el auto aprendizaje. Me gusta practicar deportes, sobre todo el fútbol y comer arepitas de la arepera 23(recomendado 100%).
               </p>
+              <a href="https://github.com/juanpabloclaros"><v-icon size=50 title="Github">mdi-github</v-icon></a>
+              <a href="https://www.linkedin.com/in/juan-pablo-claros-romero-9068b7188/"><v-icon size=50 title="Linkedin">mdi-linkedin</v-icon></a>
             </div>
           </div>
         </div>
@@ -53,15 +52,13 @@
       <!-- Second Profile -->
       <div class="lg:grid lg:grid-cols-4 my-5">
         <div class="lg:col-start-2 lg:col-span-4 ">
-          <div class="lg:grid lg:grid-cols-3 rounded">
+          <div class="lg:grid lg:grid-cols-3 rounded border-l-8 border-mustard ">
             <div class="lg:col-span-2 lg:mr-5 lg:text-right">
-              <h1 class="text-xl text-blue font-bold">Pedro Gonzalez</h1>
-              <h2 class="mb-4 text-xl text-mustard">Web Developer</h2>
-              <p class="ml-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-                facilis. Lorem ipsum dolor sit, amet consectetur adipisicing
-                elit. Commodi, accusantium?
-              </p>
+              <h1 class="text-2xl text-blue font-bold">Carmen Castro González</h1>
+              <h2 class="mb-4 text-xl text-mustard">Front-End Developer |</h2>
+              <p class="ml-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita, ad!              </p>
+              <a href="https://www.google.com"><v-icon size=50 title="Linkedin">mdi-linkedin</v-icon></a>
+              <a href="https://github.com/carcasgon"><v-hover value="true"><v-icon size=50 title="Github">mdi-github</v-icon></v-hover></a>
             </div>
             <div class="col-span-1 flex justify-end">
               <img
@@ -82,7 +79,7 @@
       <!-- Third Profile -->
       <div class="lg:grid lg:grid-cols-4 my-5">
         <div class="lg:col-span-3 rounded">
-          <div class="lg:grid lg:grid-cols-3">
+          <div class="lg:grid lg:grid-cols-3 rounded border-r-8 border-mustard ">
             <div class="lg:col-span-1">
               <img
                 src="../../assets/About/br_bruno.jpg"
@@ -91,13 +88,11 @@
               />
             </div>
             <div class="col-span-2 lg:ml-5 lg:text-left">
-              <h1 class="text-xl text-blue font-bold">Pedro Gonzalez</h1>
-              <h2 class="text-xl mb-4 text-mustard">Web Developer</h2>
-              <p class="mr-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-                facilis. Lorem ipsum dolor sit, amet consectetur adipisicing
-                elit. Commodi, accusantium?
-              </p>
+              <h1 class="text-2xl text-blue font-bold">Bruno Aggierni</h1>
+              <h2 class="text-xl mb-4 text-mustard">Front-End Developer | Campeón de chistes malos</h2>
+              <p class="mr-4">Aventurero, explorador, políglota y amante del cafe. Apasionado por viajar y perderse. Fruta favorita: Papaya. Deporte favorito: Fútbol. Peor vino del mundo? - Vino mi suegra. </p>
+              <a href="https://github.com/Braggiouy"><v-icon size=50 title="Github">mdi-github</v-icon></a>
+              <a href="https://www.linkedin.com/in/bruno-aggierni/"><v-icon size=50 title="Linkedin">mdi-linkedin</v-icon></a>
             </div>
           </div>
         </div>
