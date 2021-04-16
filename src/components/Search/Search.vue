@@ -18,19 +18,6 @@
           ></v-radio>
         </v-radio-group>
       </div>
-      <!-- <div class="col-start-3 col-span-3">
-        <v-radio-group
-          v-model="subcategorySelected"
-          row
-        >
-          <v-radio
-            v-for="(item,i) in subcategories[categorySelected]"
-            :key="i"
-            :label="item"
-            :value="i"
-          ></v-radio>
-        </v-radio-group>
-      </div> -->
       <div class="col-span-6">
         <v-card color="#2c3258">
           <v-card-title>
@@ -49,6 +36,7 @@
             :headers="headers"
             :items="categorySelected === 'todas' ? elements:filterElements"
             :search="search"
+            :items-per-page="5"
             class="elevation-1"
           >
             <template v-slot:item.actions="{ item }">
