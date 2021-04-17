@@ -31,17 +31,6 @@
                 maxlength="600"
                 required
             ></v-textarea>
-
-            <div class="grid grid-cols-11">
-              <v-text-field
-                class="col-start-4 col-span-5"
-                type="Number"
-
-                v-model="valoration"
-                label="Valoracion"
-                required
-              ></v-text-field>
-            </div>
           </div>
         </div>
 
