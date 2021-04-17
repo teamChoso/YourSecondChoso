@@ -1,5 +1,7 @@
 <template>
-  <div class="container mb-10">
+  <div class="container mb-10 w-2/3">
+    <h1 class="mt-10 text-4xl font-bold mb-2">Foro para usuarios</h1>
+    <hr class="mb-5" />
     <v-card>
       <v-toolbar
         flat
@@ -63,7 +65,7 @@
     </v-card>
 
     <div v-if="error.status" class="error">{{error.message}}</div>
-    <h1 v-if="catSelected">Comentarios</h1>
+    <h1 class="mt-12 text-3xl" v-if="catSelected">Comentarios</h1>
     <div class="mt-7 flex flex-col-reverse">
       <div v-for="(i, key) in dataDB" :key="key">
         <!-- {{i.message}} -->
@@ -188,9 +190,8 @@ export default {
     color: white;
     border-radius: 10px
 }
-h1 {
-  margin-top: 50px;
-  font-size: 30px;
+hr {
+  margin: auto;
+  width: 200px;
 }
-
 </style>
