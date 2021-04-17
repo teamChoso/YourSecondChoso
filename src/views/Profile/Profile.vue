@@ -30,11 +30,12 @@
       </div>
       <div class="w-60 text-left p-5 lg:m-0 m-auto">
         <template>
+          <p><b>Username actual:</b> {{currentUser.displayName}}</p>
           <v-form ref="form" lazy-validation>
             <v-text-field
               v-model="username"
               :rules="nameRules"
-              label="Username"
+              label="Nuevo username"
               required
             ></v-text-field>
 

@@ -56,7 +56,7 @@
             <div class="lg:col-span-2 lg:mr-5 lg:text-right">
               <h1 class="text-2xl text-blue font-bold">Carmen Castro González</h1>
               <h2 class="mb-4 text-xl text-mustard">Front-End Developer |</h2>
-              <p class="ml-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita, ad!              </p>
+              <p class="ml-4">Natural de Tacoronte, me apasionan los viajes, conocer gente de todos los rincones del mundo y no parar de aprender. Donde haya una playa y sol que se quite todo lo demás.</p>
               <a href="https://www.google.com"><v-icon size=50 title="Linkedin">mdi-linkedin</v-icon></a>
               <a href="https://github.com/carcasgon"><v-hover value="true"><v-icon size=50 title="Github">mdi-github</v-icon></v-hover></a>
             </div>
