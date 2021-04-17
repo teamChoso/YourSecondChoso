@@ -1,10 +1,17 @@
 <template>
   <div>
-    <h1 class="mt-10 text-2xl">Modifica tus datos personales</h1>
+    <h1 class="mt-10 text-4xl font-bold mb-2">Modifica tus datos personales</h1>
+    <hr />
     <div class="lg:flex justify-center lg:m-10">
-      <div class="mr-3">
-        <img :src="profileImage" alt="Imagen de perfil" class="h-40 w-40 m-auto" />
-        <div class="lg:flex lg:items-center lg:justify-center bg-grey w-60 lg:mt-4 m-auto">
+      <div class="mr-3 bg-yellow rounded-md p-5">
+        <img
+          :src="profileImage"
+          alt="Imagen de perfil"
+          class="h-40 w-40 m-auto"
+        />
+        <div
+          class="lg:flex lg:items-center lg:justify-center bg-grey w-60 lg:mt-4 m-auto"
+        >
           <label
             class="flex flex-col items-center py-3 bg-white text-blue rounded-lg border border-blue cursor-pointer hover:bg-blue hover:text-white"
           >
@@ -28,9 +35,9 @@
           </label>
         </div>
       </div>
-      <div class="w-60 text-left p-5 lg:m-0 m-auto">
+      <div class="lg:w-60 w-auto text-left p-5 lg:m-0 m-auto shadow-2xl">
         <template>
-          <p><b>Username actual:</b> {{currentUser.displayName}}</p>
+          <p><b>Username actual:</b> {{ currentUser.displayName }}</p>
           <v-form ref="form" lazy-validation>
             <v-text-field
               v-model="username"
@@ -39,16 +46,23 @@
               required
             ></v-text-field>
 
-            <PrimaryButton v-if="username!=''" class="w-12 text-sm md:w-40 mb-2"
-            name="Cambiar username"
-             @click.native="changeUsername"
+            <PrimaryButton
+              v-if="username != ''"
+              class="w-12 text-sm md:w-40 mb-2"
+              name="Cambiar username"
+              @click.native="changeUsername"
             />
-          <div class="lg:w-64 lg:p-8 lg:m-5 text-lg m-auto mt-5 text-white rounded-xl h-auto bg-red-500 text-center" v-else>Debe introducir datos.</div>
+            <div
+              class="lg:w-48 lg:p-8 text-lg m-auto mt-5 text-white rounded-xl h-auto bg-red-500 text-center"
+              v-else
+            >
+              Debe introducir datos.
+            </div>
           </v-form>
         </template>
       </div>
     </div>
-    <div v-if="error" class="error mb-10">{{error}}</div>
+    <div v-if="error" class="error mb-10">{{ error }}</div>
   </div>
 </template>
 
@@ -73,7 +87,9 @@ export default {
       ],
       nameRules: [
         (v) => !!v || "Username requerido",
-        (v) => (v && v.length >= 4) || "El username debe tener al menos 4 caracteres",
+        (v) =>
+          (v && v.length >= 4) ||
+          "El username debe tener al menos 4 caracteres",
       ],
     };
   },
@@ -124,19 +140,24 @@ export default {
         this.error = "";
         const username = this.currentUser;
         console.log("Usuario disponible");
-        this.rtDatabase.ref("/User/" + username.uid)
+        this.rtDatabase
+          .ref("/User/" + username.uid)
           .set({
             username: this.username,
             email: this.email,
-          }).then((data) => {
+          })
+          .then((data) => {
             console.log("this.dataDB.username: ", this.dataDB.username);
             this.rtDatabase
-              .ref("/UserTaken/" + this.dataDB.username).remove()
+              .ref("/UserTaken/" + this.dataDB.username)
+              .remove()
               .then((res) => {
                 this.rtDatabase
-                  .ref("/UserTaken/" + this.username).set({
+                  .ref("/UserTaken/" + this.username)
+                  .set({
                     username: this.username,
-                  }).then((res2) => {
+                  })
+                  .then((res2) => {
                     this.$swal({
                       title: "Nombre de usuario cambiado correctamente.",
                       button: { backgroundColor: "#9acd32" },
@@ -184,14 +205,13 @@ export default {
                         console.error(error);
                       });
                   });
-                console.log("Ta OK")
-                  .catch((error) => (console.log(error)));
+                console.log("Ta OK").catch((error) => console.log(error));
               });
           });
       }
     },
     checkUserExists (username) {
-      return (username in this.allUsernames);
+      return username in this.allUsernames;
     },
     changeUserSuccess () {
       this.$swal("Usuario creado con éxito");
@@ -253,5 +273,9 @@ export default {
 <style scoped>
 img {
   border-radius: 50%;
+}
+hr {
+  margin: auto;
+  width: 200px;
 }
 </style>

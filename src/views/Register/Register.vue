@@ -1,12 +1,21 @@
 <template>
-    <div>
-      <h1 class="mt-20 text-2xl">Registro</h1>
+    <div class="lg:flex lg:justify-center my-16">
+      <div class="lg:justify-center lg:bg-blue lg:block hidden">
+        <img
+          src="logo_transparent.png"
+          alt="Logo de Your Second Choso"
+          class="lg:w-52 lg:h-52 w-12 h-12 mt-9"
+        />
+        <!-- <p class="text-white">Acceda a su cuenta para disfrutar de las ventajas de ser usuario</p> -->
+      </div>
+      <div  class="lg:w-2/5 shadow-2xl">
+      <h1 class="mt-10 text-4xl font-bold mb-2">Registro</h1>
       <hr>
         <v-form class="mb-20" @submit.prevent="pressed"
           ref="form"
         >
           <v-text-field
-            class="p-8 w-3/5 m-auto lg:w-2/5"
+            class="p-8 w-3/5 m-auto"
             type="email"
             v-model="email"
             label="E-mail"
@@ -15,7 +24,7 @@
           ></v-text-field>
 
           <v-text-field
-            class="p-8 w-3/5 m-auto lg:w-2/5"
+            class="p-8 w-3/5 m-auto"
             type="text"
             v-model="userName"
             label="Username"
@@ -24,7 +33,7 @@
           ></v-text-field>
 
           <v-text-field
-            class="p-8 w-3/5 m-auto lg:w-2/5"
+            class="p-8 w-3/5 m-auto"
             v-model="password"
             type="password"
             name="input-10-1"
@@ -38,7 +47,7 @@
           />
     </v-form>
     <div v-if="error!=''" class="error mb-10">{{error}}</div>
-
+    </div>
     </div>
 </template>
 
@@ -64,11 +73,15 @@ export default {
       ],
       nameRules: [
         (v) => !!v || "Username is required",
-        (v) => (v && v.length >= 4) || "El username debe tener al menos 4 caracteres",
+        (v) =>
+          (v && v.length >= 4) ||
+          "El username debe tener al menos 4 caracteres",
       ],
       passwordRules: [
         (v) => !!v || "Contraseña requerida",
-        (v) => (v && v.length >= 6) || "La contraseña debe tener al menos 6 caracteres",
+        (v) =>
+          (v && v.length >= 6) ||
+          "La contraseña debe tener al menos 6 caracteres",
       ],
     };
   },
@@ -78,37 +91,41 @@ export default {
         console.log("Usuario ya existe");
         this.error = "El nombre desuario ya existe";
       } else {
-        firebase.storage().ref("profile/default/default.png").getDownloadURL().then((imgUrl) => {
-          firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.email, this.password)
-            .then((data) => {
-              data.user.updateProfile({
-                displayName: this.userName,
-                photoURL: imgUrl,
-              });
-            })
-            .then(() => {
-              this.rtDatabase
-                .ref("/User/" + firebase.auth().currentUser.uid)
-                .set({
-                  email: this.email,
-                  username: this.userName,
-                })
-                .then(() => {
-                  this.rtDatabase
-                    .ref("/UserTaken/" + this.userName).set({
+        firebase
+          .storage()
+          .ref("profile/default/default.png")
+          .getDownloadURL()
+          .then((imgUrl) => {
+            firebase
+              .auth()
+              .createUserWithEmailAndPassword(this.email, this.password)
+              .then((data) => {
+                data.user.updateProfile({
+                  displayName: this.userName,
+                  photoURL: imgUrl,
+                });
+              })
+              .then(() => {
+                this.rtDatabase
+                  .ref("/User/" + firebase.auth().currentUser.uid)
+                  .set({
+                    email: this.email,
+                    username: this.userName,
+                  })
+                  .then(() => {
+                    this.rtDatabase.ref("/UserTaken/" + this.userName).set({
                       username: this.userName,
                     });
-                });
-            })
-            .then(() => {
-              this.$router.replace({ path: "/" });
-            })
-            .catch((error) => (this.error = error));
-        }).then((res) => {
-          console.log("Imagenes cargadas correctamente");
-        });
+                  });
+              })
+              .then(() => {
+                this.$router.replace({ path: "/" });
+              })
+              .catch((error) => (this.error = error));
+          })
+          .then((res) => {
+            console.log("Imagenes cargadas correctamente");
+          });
       }
     },
     checkUserExists (username) {
@@ -148,17 +165,17 @@ export default {
 <style scoped>
 /* Da error con lang=scss */
 .error {
-    width: 400px;
-    padding: 30px;
-    margin: 20px;
-    font-size: 21px;
-    margin: auto;
-    margin-top: 20px;
-    color: white;
-    border-radius: 10px
+  width: 400px;
+  padding: 30px;
+  margin: 20px;
+  font-size: 21px;
+  margin: auto;
+  margin-top: 20px;
+  color: white;
+  border-radius: 10px;
 }
 hr {
-  margin:auto;
-  width: 200px
+  margin: auto;
+  width: 200px;
 }
 </style>
