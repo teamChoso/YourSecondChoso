@@ -1,6 +1,6 @@
 # YourSecondChoso
 
-<div style="margin: auto;"><img src="./src/assets/logo_transparent.png" title="Logo YourSecondChoso" height=400 width=400 alt="YourSecondChoso"/></div>
+<p align="center"><img src="./src/assets/logo_transparent.png" title="Logo YourSecondChoso" height=400 width=400 alt="YourSecondChoso"/></p>
 
   **Your Second Choso** it's a SPA that provide you information about Canary Islands Culture. In these app you can find:
 - location of "Guachinches"(local restaurant)
