@@ -200,6 +200,10 @@ export default {
                       .then((response) => {
                         this.allUsernames = response;
                         this.currentUser.displayName = this.username;
+                        username.updateProfile({
+                          displayName: this.username,
+                        });
+                        this.username = "";
                       })
                       .catch(function (error) {
                         console.error(error);
