@@ -33,7 +33,7 @@ npm run lint
 
 ```
 # Team Choso
-![Bruno Aggierni](./src/assets/About/br_bruno.jpg "Bruno photo"){: width=200 height=200 style="border-radius: 10px; margin: auto;"}
+![Bruno Aggierni](./src/assets/About/br_bruno.jpg "Bruno photo"){ width=200 height=200 style="border-radius: 10px; margin: auto;"}
 
 - **Bruno Aggierni:** Adventurer, explorer, polyglot and coffee lover. Passionate about traveling and getting lost. Favorite fruit: Papaya. Favorite sport: Soccer. Worst wine in the world? - My mother-in-law's wine.
 
