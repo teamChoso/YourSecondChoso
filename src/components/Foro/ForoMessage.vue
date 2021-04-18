@@ -1,7 +1,7 @@
 <template>
-  <div class ="flex flex-col w-auto my-7 h-40 px-8">
-    <div class ="flex items-stretch shadow-2xl my-auto">
-      <div class="w-40 ml-6 mr-10 my-auto">
+  <div class ="lg:flex lg:flex-col lg:w-auto lg:my-7 lg:h-40 px-8">
+    <div class ="lg:flex lg:items-stretch shadow-2xl my-auto">
+      <div class="lg:w-40 lg:ml-6 lg:mr-10 my-auto">
         <v-avatar
         size="70px">
           <img
@@ -14,7 +14,7 @@
           <div class="text-blue italic">{{date}}</div>
         </div>
       </div>
-      <div class="w-8/9 my-auto">
+      <div class="w-8/9 my-auto p-3">
         <div class="text-blue mx-auto text-xl my-4 mr-4">{{msg}}</div>
       </div>
     </div>

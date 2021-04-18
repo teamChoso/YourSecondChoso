@@ -55,7 +55,7 @@
 
     <div v-if="error.status" class="error">{{error.message}}</div>
     <h1 class="mt-12 text-3xl" v-if="catSelected">Comentarios</h1>
-    <div class="mt-7 flex flex-col-reverse">
+    <div class="lg:mt-7 lg:flex lg:flex-col-reverse m-auto justify-center">
       <div v-for="(i, key) in dataDB" :key="key">
         <!-- {{i.message}} -->
         <ForoMessage
