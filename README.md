@@ -1,5 +1,6 @@
 # YourSecondChoso
-<img src="./src/assets/logo_transparent.png" title="Logo YourSecondChoso" alt="YourSecondChoso" style="height: 500px; width:500px; border-radius: 10px; margin: auto;"/>
+<link rel="stylesheet" type="text/css" media="all" href="./src/assets/css/readme.css" />
+<img src="./src/assets/logo_transparent.png" title="Logo YourSecondChoso" alt="YourSecondChoso" class="logo/>
 
   **Your Second Choso** it's a SPA that provide you information about Canary Islands Culture. In these app you can find:
 - location of "Guachinches"(local restaurant)
@@ -33,7 +34,8 @@ npm run lint
 
 ```
 # Team Choso
-![Bruno Aggierni](./src/assets/About/br_bruno.jpg "Bruno photo"){ width=200 height=200 style="border-radius: 10px; margin: auto;"}
+![Bruno Aggierni](./src/assets/About/br_bruno.jpg "Bruno photo"){: width=200 height=200 style="border-radius: 10px; margin: auto;"}
+<img src="./src/assets/About/br_bruno.jpg" alt="Bruno photo" style="height: 100px; width:100px; border-radius: 10px; margin: auto;"/>
 
 - **Bruno Aggierni:** Adventurer, explorer, polyglot and coffee lover. Passionate about traveling and getting lost. Favorite fruit: Papaya. Favorite sport: Soccer. Worst wine in the world? - My mother-in-law's wine.
 
