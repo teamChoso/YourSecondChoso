@@ -199,7 +199,7 @@ export default {
                       })
                       .then((response) => {
                         this.allUsernames = response;
-                        // Console.log(response);
+                        this.currentUser.displayName = this.username;
                       })
                       .catch(function (error) {
                         console.error(error);

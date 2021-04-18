@@ -40,7 +40,7 @@
         <v-spacer></v-spacer>
         <div class="flex justify-start mb-4">
           <v-btn
-            :disabled="(message == '') || (valoration == '')"
+            :disabled="(message == '')"
             color="#e4b61a"
             rounded
             dark
@@ -60,7 +60,6 @@
         <!-- {{i.message}} -->
         <ForoMessage
           :name="i.user"
-          :val="i.valoration"
           :category="i.category"
           :msg="i.message"
           :date="i.date"
@@ -97,7 +96,7 @@ export default {
   },
   methods: {
     pressed () {
-      if (this.message === "" || this.valoration === "") {
+      if (this.message === "") {
         this.error.message = "Debes introducir los datos";
         this.error.status = true;
       } else {
