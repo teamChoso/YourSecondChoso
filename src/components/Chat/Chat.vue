@@ -1,54 +1,174 @@
 <template>
   <div class="container">
-    <div class="wrapper">
-      <header>
-        <h1 class="text-3xl">YSC Chat</h1>
-        <button class="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-4 border-b-4 border-purple-900 hover:border-purple-600 rounded" @click="finished">Terminar consulta</button>
-      </header>
-      <section>
-        <main>
-          <div v-for="(msg, index) in messages" v-bind:key="'index-'+index"
-              :class="['message', sentOrReceived(msg.userUID)]">
-            <img class="profilePhoto" :src="msg.photoURL" :alt="msg.displayName">
-            <p v-if="msg.type == 'text'">{{ msg.text }}</p>
-            <img v-if="msg.type == 'img'" class="imgChat" :src="msg.text" :alt="msg.displayName">
-          </div>
+    <div class="flex justify-center">
+        <v-btn
+          class="mb-4 mx-4"
+          x-large
+          rounded
+          color="#dbd7d4"
+          @click="contactUs = true"
+        >
+          <v-icon size=40 color="#2c3258">mdi-arrow-left-bold</v-icon>
+        </v-btn>
+        <v-btn
+          class="mb-4 mx-4"
+          x-large
+          rounded
+          color="#dbd7d4"
+          @click="contactUs = false"
+        >
+          <v-icon size=40 color="#2c3258">mdi-arrow-right-bold</v-icon>
+        </v-btn>
+      </div>
+    <section v-if="contactUs">
+      <div class="lg:flex lg:justify-center my-16">
+        <div class="lg:justify-center lg:bg-blue lg:block hidden">
+          <img
+            src="logo_transparent.png"
+            alt="Logo de Your Second Choso"
+            class="lg:w-52 lg:h-52 w-12 h-12 mt-9"
+          />
+        </div>
+        <div  class="lg:w-2/5 shadow-2xl">
+          <h1 class="mt-10 text-4xl font-bold mb-2">Contacto</h1>
+          <hr>
+            <v-form class="pb-5">
+              <v-text-field
+                class="p-8 w-5/6 m-auto"
+                type="email"
+                v-model="email"
+                label="E-mail"
+                :rules="emailRules"
+                required
+              ></v-text-field>
 
-          <div ref="scrollable"></div>
-        </main>
+              <v-text-field
+                class="p-8 w-5/6 m-auto"
+                type="text"
+                v-model="userName"
+                label="Username"
+                :rules="nameRules"
+                required
+              ></v-text-field>
 
-        <form>
-          <input class="input-text" v-model="message" type="text" placeholder="Escribe un mensaje!">
-          <button class="bg-blue hover:bg-purple-900 font-bold py-2 px-4 border border-purple-900" :disabled="!message" v-on:click.prevent="sendMessage($event,'text')">📩</button>
-          <div>
-              <label class="w-24 h-full flex flex-col items-center py-7 bg-blue text-blue cursor-pointer hover:bg-purple-900">
-                  <span class="">📎</span>
-                  <input accept="image/*" type='file' class="hidden" v-on:change.prevent="sendMessage($event,'img')"/>
-              </label>
-          </div>
-        </form>
+              <v-textarea
+                filled
+                class="p-8 w-5/6 mx-auto"
+                v-model="reason"
+                label="Asunto"
+                maxlength="300"
+                required
+              ></v-textarea>
+              <PrimaryButton
+                name="Enviar"
+                @click.native="sendContact"
+              />
+          </v-form>
+        </div>
+      </div>
     </section>
-    </div>
+    <section v-if="!contactUs">
+      <div class="wrapper">
+        <header>
+          <h1 class="text-3xl">YSC Chat</h1>
+          <button class="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-4 border-b-4 border-purple-900 hover:border-purple-600 rounded" @click="finished">Terminar consulta</button>
+        </header>
+        <section>
+          <main>
+            <div v-for="(msg, index) in messages" v-bind:key="'index-'+index"
+                :class="['message', sentOrReceived(msg.userUID)]">
+              <img class="profilePhoto" :src="msg.photoURL" :alt="msg.displayName">
+              <p v-if="msg.type == 'text'">{{ msg.text }}</p>
+              <img v-if="msg.type == 'img'" class="imgChat" :src="msg.text" :alt="msg.displayName">
+            </div>
+
+            <div ref="scrollable"></div>
+          </main>
+
+          <form>
+            <input class="input-text" v-model="message" type="text" placeholder="Escribe un mensaje!">
+            <button class="bg-blue hover:bg-purple-900 font-bold py-2 px-4 border border-purple-900" :disabled="!message" v-on:click.prevent="sendMessage($event,'text')">📩</button>
+            <div>
+                <label class="w-24 h-full flex flex-col items-center py-7 bg-blue text-blue cursor-pointer hover:bg-purple-900">
+                    <span class="">📎</span>
+                    <input accept="image/*" type='file' class="hidden" v-on:change.prevent="sendMessage($event,'img')"/>
+                </label>
+            </div>
+          </form>
+      </section>
+      </div>
+    </section>
+    <v-overlay
+      z-index="0"
+      :value="loading"
+      >
+        <v-progress-circular
+          :size="100"
+          :width="10"
+          color="#e4b61a"
+          indeterminate
+        ></v-progress-circular>
+      </v-overlay>
   </div>
 </template>
 
 <script>
 import firebase from "firebase/app";
+import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
+
 export default {
   name: "Chat",
+  components: {
+    PrimaryButton,
+  },
   mounted () {
+    this.loading = true;
     this.getMessages();
   },
   data () {
     return {
       user: firebase.auth().currentUser,
       db: firebase.firestore(),
+      rtDatabase: firebase.database(),
       message: "",
       messages: [],
       type: "",
+      loading: false,
+      contactUs: true,
+      email: "",
+      userName: "",
+      reason: "",
+      emailRules: [
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "El E-mail debe ser válido",
+      ],
+      nameRules: [
+        (v) => !!v || "Username is required",
+        (v) =>
+          (v && v.length >= 4) ||
+          "El username debe tener al menos 4 caracteres",
+      ],
     };
   },
   methods: {
+    sendContact () {
+      this.loading = true;
+      this.rtDatabase
+        .ref("/Contacto")
+        .push({
+          email: this.email,
+          username: this.userName,
+          reason: this.reason,
+        })
+        .then((response) => {
+          this.reason = "";
+          this.email = "";
+          this.userName = "";
+        })
+        .then((response) => {
+          this.loading = false;
+        });
+    },
     sentOrReceived (userUID) {
       return userUID === this.user.uid ? "sent" : "received";
     },
@@ -93,24 +213,9 @@ export default {
       this.db.collection("messages").orderBy("createdAt")
         .onSnapshot((querySnap) => {
           this.messages = querySnap.docs.map((doc) => doc.data());
+          setTimeout(() => { this.loading = false; }, 1000);
         });
     },
-  },
-  destroyed () {
-    this.db.collection("messages").where("userUID", "==", this.user.uid).get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.db.collection("messages").doc(doc.id).delete().then(() => {
-            console.log("Document successfully deleted!");
-          }).catch((error) => {
-            console.error("Error removing document: ", error);
-          });
-          console.log(doc.id, " => ", doc.data());
-        });
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
   },
 };
 </script>

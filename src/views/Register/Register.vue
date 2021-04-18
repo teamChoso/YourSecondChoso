@@ -9,51 +9,52 @@
         <!-- <p class="text-white">Acceda a su cuenta para disfrutar de las ventajas de ser usuario</p> -->
       </div>
       <div  class="lg:w-2/5 shadow-2xl">
-      <h1 class="mt-10 text-4xl font-bold mb-2">Registro</h1>
-      <hr>
-        <v-form class="mb-20" @submit.prevent="pressed"
-          ref="form"
-        >
-          <v-text-field
-            class="p-8 w-3/5 m-auto"
-            type="email"
-            v-model="email"
-            label="E-mail"
-            :rules="emailRules"
-            required
-          ></v-text-field>
+        <h1 class="mt-10 text-4xl font-bold mb-2">Registro</h1>
+        <hr>
+          <v-form class="mb-20" @submit.prevent="pressed"
+            ref="form"
+          >
+            <v-text-field
+              class="p-8 w-3/5 m-auto"
+              type="email"
+              v-model="email"
+              label="E-mail"
+              :rules="emailRules"
+              required
+            ></v-text-field>
 
-          <v-text-field
-            class="p-8 w-3/5 m-auto"
-            type="text"
-            v-model="userName"
-            label="Username"
-            :rules="nameRules"
-            required
-          ></v-text-field>
+            <v-text-field
+              class="p-8 w-3/5 m-auto"
+              type="text"
+              v-model="userName"
+              label="Username"
+              :rules="nameRules"
+              required
+            ></v-text-field>
 
-          <v-text-field
-            class="p-8 w-3/5 m-auto"
-            v-model="password"
-            type="password"
-            name="input-10-1"
-            label="Contraseña"
-            :rules="passwordRules"
-            counter
-          ></v-text-field>
-          <PrimaryButton
-            name="Registrarse"
-            type="submit"
-          />
-    </v-form>
-    <div v-if="error!=''" class="error mb-10">{{error}}</div>
-    </div>
+            <v-text-field
+              class="p-8 w-3/5 m-auto"
+              v-model="password"
+              type="password"
+              name="input-10-1"
+              label="Contraseña"
+              :rules="passwordRules"
+              counter
+            ></v-text-field>
+            <PrimaryButton
+              name="Registrarse"
+              type="submit"
+            />
+        </v-form>
+        <div v-if="error!=''" class="error mb-10">{{error}}</div>
+      </div>
     </div>
 </template>
 
 <script>
 import firebase from "firebase/app";
 import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
+
 export default {
   name: "Register",
   data () {
