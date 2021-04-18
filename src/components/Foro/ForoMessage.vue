@@ -40,10 +40,6 @@ export default {
       type: String,
       default: "",
     },
-    val: {
-      type: String,
-      default: "",
-    },
     img: {
       type: String,
       default: "",
