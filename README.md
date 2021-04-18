@@ -37,12 +37,12 @@ npm run lint
 
 <p align="center" style="border-radius: 30px;"><img src="./src/assets/About/br_bruno.jpg" alt="Bruno photo" style="border-radius: 10px; margin: auto;" height=200 width=200/></p>
 
-- **Bruno Aggierni:** Adventurer, explorer, polyglot and coffee lover. Passionate about traveling and getting lost. Favorite fruit: Papaya. Favorite sport: Soccer. Worst wine in the world? - My mother-in-law's wine.
+- **Bruno Aggierni:** [LinkedIn](https://www.linkedin.com/in/bruno-aggierni/) [Github](https://github.com/Braggiouy)
 
 <p align="center" style="border-radius: 30px;"><img src="./src/assets/About/ca_carmen.jpg" alt="Carmen photo" style="border-radius: 10px; margin: auto;" height=200 width=200/></p>
 
-- **Carmen Castro:** Born in Tacoronte, I am passionate about traveling, meeting people from all corners of the world and never stop learning. Where there is a beach and sun all the rest is gone.
+- **Carmen Castro:** [LinkedIn](https://www.linkedin.com/in/carmen-c-813478116/) [Github](https://github.com/carcasgon)
 
 <p align="center" style="border-radius: 30px;"><img src="./src/assets/About/jp_juanpa.jpg" alt="Juan Pablo photo" style="border-radius: 10px; margin: auto;" height=200 width=200/></p>
 
-- **Juan Pablo Claros:** Better known as Juampi the palmero. Passionate about video games and everything related to application development and self-learning. I like to play sports, especially soccer and eat arepitas de la arepera 23 (100% recommended).
+- **Juan Pablo Claros:** [LinkeIn](https://www.linkedin.com/in/juan-pablo-claros-romero-9068b7188/) [Github](https://github.com/juanpabloclaros)
