@@ -37,7 +37,7 @@
       </div>
       <div class="lg:w-60 w-auto text-left p-5 lg:m-0 m-auto shadow-2xl">
         <template>
-          <p><b>Username actual:</b> {{ currentUser.displayName }}</p>
+          <p><b>Username actual:</b> {{ dataDB.username }}</p>
           <v-form ref="form" lazy-validation>
             <v-text-field
               v-model="username"
@@ -178,7 +178,10 @@ export default {
                       })
                       .then((response) => {
                         this.dataDB = response;
-                        console.log(this.dataDB);
+                        username.updateProfile({
+                          displayName: this.username,
+                        });
+                        this.username = "";
                       })
                       .catch(function (error) {
                         console.error(error);
@@ -199,11 +202,6 @@ export default {
                       })
                       .then((response) => {
                         this.allUsernames = response;
-                        this.currentUser.displayName = this.username;
-                        username.updateProfile({
-                          displayName: this.username,
-                        });
-                        this.username = "";
                       })
                       .catch(function (error) {
                         console.error(error);
