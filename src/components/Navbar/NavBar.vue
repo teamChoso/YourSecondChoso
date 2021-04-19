@@ -122,13 +122,6 @@ export default {
 </script>
 
 <style scoped>
-/* .navbar-color {
-  background: rgb(44,50,88);
-  background: -moz-linear-gradient(38deg, rgba(44,50,88,1) 0%, rgba(254,233,112,1) 100%);
-  background: -webkit-linear-gradient(38deg, rgba(44,50,88,1) 0%, rgba(254,233,112,1) 100%);
-  background: linear-gradient(38deg, rgba(44,50,88,1) 0%, rgba(254,233,112,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2c3258",endColorstr="#fee970",GradientType=1);
-} */
 .fixed {
   position: fixed;
 }
