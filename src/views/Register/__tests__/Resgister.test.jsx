@@ -1,21 +1,17 @@
 /*
- * Import { render } from "@testing-library/vue";
- * import Resgister from "@/views/Register/Register";
+ * Import Register from "../Register.vue";
+ * import { render } from "@testing-library/vue";
  * import "@testing-library/jest-dom";
  */
 
 /*
  * Describe("Register", () => {
- *   it("Check if register mounted", () => {
- *     const { getByText } = render(Resgister);
- *     expect(getByText("Registro")).toBeInTheDocument();
- *   });
+ *   it("should render component", () => {
+ *     const { getByAltText } = render(Register);
  */
 
 /*
- *   It("Check if button mounted", () => {
- *     const { getByText } = render(Resgister);
- *     expect(getByText("Registrarse")).toBeInTheDocument();
+ *     Expect(getByAltText("Logo de Your Second Choso")).toBeDefined();
  *   });
  * });
  */

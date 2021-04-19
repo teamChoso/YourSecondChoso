@@ -57,7 +57,6 @@
     <h1 class="mt-12 text-3xl" v-if="catSelected">Comentarios</h1>
     <div class="mt-7 flex flex-col-reverse">
       <div v-for="(i, key) in dataDB" :key="key">
-        <!-- {{i.message}} -->
         <ForoMessage
           :name="i.user"
           :category="i.category"
