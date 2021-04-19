@@ -9,7 +9,7 @@
           class="lg:w-28 lg:h-28 w-12 h-12"
         />
         <v-toolbar-title class="text-mustard">
-          <p @click="toHome" class="lg:mb-4 mb-0">Your Second Choso</p>
+          <p @click="toHome" class="lg:mb-4 mb-0 text-2xl">Your Second Choso</p>
         </v-toolbar-title>
 
         <v-spacer></v-spacer>
@@ -19,7 +19,7 @@
         </div>
         <div class="lg:flex lg:justify-end lg:space-x-9 lg:mt-10 hidden">
           <v-btn
-            class="text-white w-12 text-sm md:w-48 lg:block hidden"
+            class="text-white w-12 text-sm lg:w-48 lg:block hidden "
             outlined
             rounded
             @click="updateOverlay"
@@ -29,7 +29,7 @@
           </v-btn>
 
           <PrimaryButton
-            class="w-12 text-sm md:w-40 mb-2"
+            class="w-12 text-sm lg:w-40 mb-2"
             v-if="!user.loggedIn"
             path="/login"
             name="Iniciar Sesión"
