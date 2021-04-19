@@ -1,7 +1,6 @@
 /*
  * Import { render } from "@testing-library/vue";
  * import Profile from "@/views/Profile/Profile";
- * import "@testing-library/jest-dom";
  */
 
 /*

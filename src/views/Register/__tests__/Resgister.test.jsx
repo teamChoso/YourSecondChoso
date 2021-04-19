@@ -1,7 +1,6 @@
 /*
  * Import Register from "../Register.vue";
  * import { render } from "@testing-library/vue";
- * import "@testing-library/jest-dom";
  */
 
 /*

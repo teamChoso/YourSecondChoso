@@ -1,7 +1,6 @@
 /*
  * Import { render } from "@testing-library/vue";
  * import Shop from "@/views/Shop/Shop.vue";
- * import "@testing-library/jest-dom";
  */
 
 /*
