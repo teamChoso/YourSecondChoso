@@ -29,7 +29,7 @@
               <img
                 src="../../assets/About/jp_juanpa.jpg"
                 class="lg:h-64 lg:w-72 rounded-2xl h-40 w-40 m-auto"
-                alt=""
+                alt="Foto de perfil de Juampi"
               />
             </div>
             <div class="col-span-2 lg:text-left lg:ml-5 justify-center">
@@ -64,7 +64,7 @@
               <img
                 src="../../assets/About/ca_carmen.jpg"
                 class="lg:h-64 lg:w-72 rounded-2xl h-40 w-40 m-auto"
-                alt=""
+                alt="Foto de perfil de Carmen"
               />
             </div>
           </div>
@@ -84,7 +84,7 @@
               <img
                 src="../../assets/About/br_bruno.jpg"
                 class="lg:h-64 lg:w-72 rounded-2xl h-40 w-40 m-auto"
-                alt=""
+                alt="Foto de perfil de Bruno"
               />
             </div>
             <div class="col-span-2 lg:ml-5 lg:text-left">
