@@ -13,3 +13,11 @@ describe("Login", () => {
     expect(getByText("Iniciar Sesión")).toBeInTheDocument();
   });
 });
+
+describe("Logo YSC", () => {
+  it("should render logo", () => {
+    const { getByAltText } = render(Login);
+
+    expect(getByAltText("Logo de Your Second Choso")).toBeDefined();
+  });
+});

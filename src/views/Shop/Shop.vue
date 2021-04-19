@@ -91,16 +91,16 @@ export default {
   },
   methods: {
     addOne (index) {
-      this.products[index].amount = this.products[index].amount + 1;
+      this.filterIsland[index].amount = this.filterIsland[index].amount + 1;
     },
     removeOne (index) {
-      if (this.products[index].amount > 0) {
-        this.products[index].amount = this.products[index].amount - 1;
+      if (this.filterIsland[index].amount > 0) {
+        this.filterIsland[index].amount = this.filterIsland[index].amount - 1;
       }
     },
     buy () {
       const products = [];
-      this.products.forEach((item) => {
+      this.filterIsland.forEach((item) => {
         if (item.amount > 0) {
           products.push(item);
         }
