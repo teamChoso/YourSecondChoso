@@ -33,6 +33,22 @@ Run the lint's rules(optional)
 npm run lint
 
 ```
+# Technologies
+
+**Technologies** used in the application:
+- Vuetify
+- vue2-leaflet
+- Netlify
+- Vite
+- Firebase(storage, firestore, realtime database and authentication)
+- Bulma for landing
+- Tailwind
+- Stripe
+- Jest
+- Sass for landing
+- PostCss
+- Google Analytics
+
 # Team Choso
 
 <p align="center" style="border-radius: 30px;"><img src="./src/assets/About/br_bruno.jpg" alt="Bruno photo" style="border-radius: 10px; margin: auto;" height=200 width=200/></p>
